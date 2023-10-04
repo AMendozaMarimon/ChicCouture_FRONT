@@ -1,0 +1,167 @@
+.navbar {
+  width: 100%;
+  position: fixed;
+  background-color: white;
+  padding-bottom: 2vw;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 1px 4px #92a1b026;
+}
+
+.containerAD {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-hover-btn);
+}
+
+.containerAD p {
+  font-family: var(--font-principal);
+  font-size: 14px;
+  margin: 5px;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0vw 6vw;
+}
+
+.container2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0vw 6vw;
+  }
+
+.btnUl2 ul {
+  display: flex;
+  list-style: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+}
+
+.btnUl2 li {
+  font-family: var(--font-principal);
+  color: var(--color-black);
+  border-radius: 20%;
+  background-color: transparent;
+  margin: 0 1vw;
+  padding: 7px;
+  transition: background-color 0.3s ease;
+}
+
+.btnUl2 li:hover {
+  background-color: var(--color-hover-btn); 
+}
+
+.input {
+  font-size: var(--font-principal);
+  width: 20vw;
+  padding: 10px 23px;
+  border: 2px solid var(--color-grey-input);
+  border-radius: 7px;
+  outline: none;
+  transition: border 0.3s ease;
+}
+
+.input:focus {
+  border-color: var(--color-hover-input);
+}
+
+.divLogo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  width: 55%;
+  height: auto;
+}
+
+.btnUl ul {
+  display: flex;
+  list-style: none;
+  cursor: pointer;
+  background-color: transparent;
+  padding: 0;
+}
+
+.btnUl li {
+  font-family: var(--font-principal);
+  margin: 0 1vw;
+  padding: 10px;
+  border-radius: 20%;
+  transition: background-color 0.3s ease;
+}
+
+.btnUl li:hover {
+  background-color: var(--color-hover-btn);
+}
+
+.btn {
+  margin-left: 3.5vw;
+}
+
+.btn button {
+  background-color: transparent;
+  padding: 6px;
+  border-radius: 10px;
+  border: none;
+  margin: 0 3px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.btn button:hover {
+  background-color: var(--color-hover-btn);
+}
+
+.btn img {
+  width: 70%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .container {
+    margin: 4vw;
+  }
+
+  .container2 {
+    display: none;
+  }
+
+  .menu {
+    padding: 2vw;
+  }
+
+  .divLogo {
+    width: 100%;
+  }
+
+  .divMenu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo {
+    width: 75%;
+  }
+
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2vw;
+    margin: 0;
+  }
+
+  .btn img {
+    width: 120%;
+    height: auto;
+  }
+}

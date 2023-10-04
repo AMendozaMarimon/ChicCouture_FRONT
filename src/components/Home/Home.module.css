@@ -1,0 +1,93 @@
+.container {
+  margin: 10% 7vw;
+}
+
+.container2 {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.land {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 1vw 0;
+}
+
+.sideLeft {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-right: 5vw;
+}
+
+.textLeft h1 {
+  font-family: var(--font-title);
+  color: var(--color-black);
+  font-size: 37px;
+  margin-bottom: 20px;
+}
+
+.textLeft span {
+  font-size: 17px;
+  color: var(--color-grey-input);
+}
+
+.textLeft p {
+  font-family: var(--font-principal);
+  margin-bottom: 26px;
+}
+
+.textLeft button {
+  font-family: var(--font-principal);
+  font-size: 14px;
+  font-weight: bold;
+  background-color: transparent;
+  border-radius: 10px;
+  padding: 13px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.textLeft button:hover {
+  background-color: var(--color-hover-btn);
+}
+
+.sideRigth {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+}
+
+.img1 {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .container {
+    margin: 29% 7vw;
+  }
+
+  .land {
+    flex-direction: column-reverse;
+  }
+
+  .sideLeft {
+    padding: 2vw;
+  }
+
+  .textLeft h1 {
+    font-size: 30px;
+    margin: 5vw 0;
+  }
+
+  .textLeft span {
+    font-size: 15px;
+  }
+}

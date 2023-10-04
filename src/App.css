@@ -1,0 +1,14 @@
+@import url(https://db.onlinewebfonts.com/c/ccdb598c7dd2100f5f7a8c1296c1dcfe?family=Farfetch+Basis+Regular);
+@import url(https://db.onlinewebfonts.com/c/312e1b153109eaeffbcd9227eaa6519b?family=Nimbus+Sans+Extd+D+W01+Light);
+#root {
+  /* FontsPage */
+  --font-title: 'Nimbus Sans Extd D W01 Light';
+  --font-principal: "Farfetch Basis Regular";
+  /* ColorBase */
+  --color-black: black;
+  /* ButtonColoresHover */
+  --color-hover-btn: #f3f3f3;
+  /* Searchs Colores */
+  --color-grey-input: rgb(149, 149, 149);
+  --color-hover-input: rgb(203, 203, 203);
+}
