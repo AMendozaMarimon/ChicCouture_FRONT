@@ -1,0 +1,82 @@
+.containerP {
+  display: flex;
+  max-width: 100%;
+  margin: 1vw;
+  transition: box-shadow 0.3s ease;
+}
+
+.containerP:hover {
+  box-shadow: 0px 0px 7px 2px rgba(163, 160, 160, 0.3);
+}
+
+.containerCard {
+  width: 20vw;
+  height: auto;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  position: relative;
+}
+
+.img {
+  position: relative;
+  max-width: 100%;
+  opacity: 1;
+  cursor: pointer;
+  overflow: hidden;
+  background-color: transparent;
+  isolation: isolate;
+}
+
+.fav {
+  width: 7%;
+  position: absolute;
+  margin: 1vw;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+.text {
+  margin: 0 1vw;
+}
+
+.brand {
+  font-family: var(--font-principal);
+  font-weight: bolder;
+  margin: 1vw 0;
+}
+
+.name {
+  font-family: var(--font-principal);
+  font-size: 15px;
+  margin: 0 0;
+}
+
+.price {
+  font-family: var(--font-principal);
+  font-size: 15px;
+  font-weight: bolder;
+}
+
+@media (max-width: 768px) {
+
+  .containerCard {
+    width: 100%;
+  }
+
+  .fav {
+    margin: 2vw;
+    width: 15%;
+  }
+
+  .text {
+    margin: 4vw 2.5vw;
+  }
+}

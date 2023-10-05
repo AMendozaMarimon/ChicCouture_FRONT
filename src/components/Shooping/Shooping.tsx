@@ -1,3 +1,4 @@
+import Cards from './Cards/Cards';
 import styles from './Shooping.module.css';
 
 export default function Shooping() {
@@ -9,7 +10,7 @@ export default function Shooping() {
                 </div>
                 <div>
                 //Filters
-                //Cards
+                    <Cards />
                 </div>
             </div>
         </div>
