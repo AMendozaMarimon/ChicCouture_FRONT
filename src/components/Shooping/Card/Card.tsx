@@ -1,7 +1,15 @@
 import styles from "./Card.module.css";
 import Fav from "./Img/Fav.png";
 
-export default function Card(props) {
+interface CardsProps {
+  id: string,
+  name: string,
+  image: string,
+  price: number,
+  brand: string
+}
+
+export default function Card(props: CardsProps) {
   const { id, name, image, price, brand } = props;
 
   const formatPrice = (price: number) => {

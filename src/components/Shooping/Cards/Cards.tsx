@@ -6,6 +6,14 @@ import { Dispatch } from "redux";
 import styles from "./Cards.module.css"
 import Card from "../Card/Card";
 
+interface Product {
+  id: string;
+  name: string;
+  image: string;
+  price: number;
+  brandName: string;
+}
+
 export default function Cards() {
 
   const dispatch: Dispatch<any> = useDispatch();
@@ -18,7 +26,7 @@ export default function Cards() {
   return (
     <div className={styles.containerP}>
       <div className={styles.containerProd}>
-        {products && products.map((product: any) => (
+        {products && products.map((product: Product) => (
           <Card
             key={product.id}
             id={product.id}

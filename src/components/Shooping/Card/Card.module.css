@@ -10,7 +10,7 @@
 }
 
 .containerCard {
-  width: 20vw;
+  width: 19vw;
   height: auto;
   flex-wrap: wrap;
   justify-content: center;
@@ -73,7 +73,7 @@
 
   .fav {
     margin: 2vw;
-    width: 15%;
+    width: 8%;
   }
 
   .text {
