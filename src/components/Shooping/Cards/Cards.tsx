@@ -9,7 +9,7 @@ import Card from "../Card/Card";
 interface Product {
   id: string;
   name: string;
-  image: string;
+  image: string[];
   price: number;
   brandName: string;
 }

@@ -4,7 +4,7 @@ import Bag from "./Img/Bag.png";
 import Logo from "./Img/LOGOCC.png";
 import Menu from "./Img/MENU.svg";
 import { useEffect, useState } from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
 
 export default function Navbar() {
@@ -73,30 +73,42 @@ export default function Navbar() {
                         isMobile ? (
                         //Si la relación de aspecto es isMobile('768px') entonces mostrará solo un botón
                             <div className={styles.btn}>
-                                <button><img
-                                    src={Fav}
-                                    alt="Favorite..."
-                                    draggable="false"
-                                    title="Favorites" /></button>
+                                <Link to={"/favorites"}>
+                                    <button>
+                                        <img
+                                        src={Fav}
+                                        alt="Favorite..."
+                                        draggable="false"
+                                        title="Favorites" />
+                                    </button>
+                                </Link>
                             </div>
                         ) : (
                             //Si no es isMobile mostrará todos los botonesS
                             <div className={styles.btn}>
-                                <button><img
+                                <button>
+                                    <img
                                     src={User}
                                     alt="User..."
                                     draggable="false"
-                                    title="User" /></button>
-                                <button><img
-                                    src={Fav}
-                                    alt="Favorite..."
-                                    draggable="false"
-                                    title="Favorites" /></button>
-                                <button><img
+                                    title="User" />
+                                </button>
+                                <button>
+                                    <Link to={"/favorites"}>
+                                        <img
+                                        src={Fav}
+                                        alt="Favorite..."
+                                        draggable="false"
+                                        title="Favorites" />
+                                    </Link>
+                                </button>
+                                <button>
+                                    <img
                                     src={Bag}
                                     alt="Bag..."
                                     draggable="false"
-                                    title="Shopping Bag" /></button>
+                                    title="Shopping Bag" />
+                                </button>
                             </div>
                         )
                     }

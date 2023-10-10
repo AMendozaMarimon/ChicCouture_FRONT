@@ -1,5 +1,5 @@
 .container {
-  margin: 10% 7vw;
+  margin: 10rem 7vw;
 }
 
 .container2 {
@@ -110,10 +110,6 @@
 }
 
 @media (max-width: 768px) {
-  .container {
-    margin: 29% 7vw;
-  }
-
   .land {
     flex-direction: column-reverse;
   }
