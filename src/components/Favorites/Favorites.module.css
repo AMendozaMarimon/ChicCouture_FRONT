@@ -1,0 +1,83 @@
+.containerP {
+  margin: 12.5rem 7vw;
+}
+
+.container2 {
+  margin: 5vw 0 4vw 0;
+}
+
+.title {
+  font-family: var(--font-title);
+  font-size: 1.4vw;
+}
+
+.title h2 {
+  margin: 0 0 0.5vw 0;
+}
+
+.text {
+  display: inline-block;
+  flex-direction: column;
+}
+
+.text p {
+  font-family: var(--font-principal);
+  margin: 1.5vw 0 0vw 0;
+}
+
+.textP {
+    margin: 1vw 0;
+}
+
+.textP p {
+  font-family: var(--font-principal);
+  margin: 0.2vw 0vw;
+}
+
+.text button {
+  font-family: var(--font-principal);
+  font-size: 14px;
+  font-weight: bold;
+  background-color: transparent;
+  border-radius: 10px;
+  padding: 13px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.text button:hover {
+  background-color: var(--color-hover-btn);
+}
+
+.containerCF {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+  .containerP {
+    margin: 9rem 7vw;
+  }
+
+  .title h2 {
+    font-size: 6vw;
+  }
+
+  .text {
+    margin: 4vw 0;
+  }
+
+  .textP {
+    margin: 4vw  0;
+  }
+
+  .textP p {
+    margin: 2vw 0;
+    text-align: justify;
+  }
+
+  .text button {
+    margin-top: 2vw;
+  }
+}

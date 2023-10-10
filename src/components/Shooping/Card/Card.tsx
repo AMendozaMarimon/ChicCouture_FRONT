@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { productReducer } from "../../../Redux/reducer";
-import { enqueueSnackbar } from "notistack";
+import { addProdNoti, removeProdNoti } from "../../../assets/NotiStack";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import styles from "./Card.module.css";
@@ -17,7 +17,8 @@ interface CardsProps {
   brand: string;
 }
 
-export default function Card(props: CardsProps) {
+export default function Card(props: CardsProps) { 
+
   const { id, name, image, price, brand } = props;
   const [isFav, setIsFav] = useState(false);
   const Favs = useSelector((state: productReducer) => state.favorites);
@@ -44,32 +45,17 @@ export default function Card(props: CardsProps) {
             onClick: () => {
               dispatch(removeFav({ id: props.id }));
               setIsFav(false);
-              enqueueSnackbar("El producto ha sido eliminado con éxito!", {
-                variant: "error",
-                anchorOrigin: {
-                  vertical: "bottom",
-                  horizontal: "right",
-                },
-              });
+              removeProdNoti(); //Alerta de aviso de eliminación del producto
             },
           },
           {
             label: "No",
-            onClick: () => {
-              console.log("Hola");
-            },
           },
         ],
       });
     } else {
       await dispatch(addFav(props));
-      enqueueSnackbar("El producto se agregó con éxitos!", {
-        variant: "success",
-        anchorOrigin: {
-          vertical: "bottom",
-          horizontal: "right",
-        },
-      });
+      addProdNoti(); //Alerta de aviso del añadido del producto
     }
   };
 

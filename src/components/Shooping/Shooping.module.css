@@ -4,15 +4,15 @@
 
 .title {
   font-family: var(--font-title);
-  font-size: 20px;
+  font-size: 1.4vw;
 }
 
 @media (max-width: 768px) {
-    .container {
-        margin: 9rem 7vw;
-    }
+  .container {
+    margin: 9rem 7vw;
+  }
 
-    .title {
-        font-size: 15px;
-    }
+  .title {
+    font-size: 15px;
+  }
 }
