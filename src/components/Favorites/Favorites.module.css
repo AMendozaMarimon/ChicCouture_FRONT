@@ -41,6 +41,7 @@
   background-color: transparent;
   border-radius: 10px;
   padding: 13px;
+  margin-top: 0.5vw;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -52,7 +53,7 @@
 .containerCF {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 @media (max-width: 768px) {

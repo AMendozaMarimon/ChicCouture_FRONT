@@ -33,7 +33,26 @@
   align-items: center;
   justify-content: space-between;
   margin: 0vw 6vw;
-  }
+}
+
+.buttonFav {
+  position: relative;
+  display: inline-block;
+}
+
+.favoriteCounter {
+  position: absolute;
+  font-family: var(--font-principal);
+  font-size: 9px;
+  color: white;
+  bottom: 0;
+  right: 0;
+  background-color: var(--color-black); 
+  border: 3px solid white;
+  border-radius: 50%; 
+  padding: 4px 6px; 
+  margin-right: 5px;
+}
 
 .btnUl2 ul {
   display: flex;
@@ -54,7 +73,7 @@
 }
 
 .btnUl2 li:hover {
-  background-color: var(--color-hover-btn); 
+  background-color: var(--color-hover-btn);
 }
 
 .input {
@@ -161,7 +180,11 @@
   }
 
   .btn img {
-    width: 120%;
+    width: 160%;
     height: auto;
+  }
+
+  .favoriteCounter {
+    margin-right: -8px;
   }
 }

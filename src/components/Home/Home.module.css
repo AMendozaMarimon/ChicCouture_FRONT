@@ -110,6 +110,10 @@
 }
 
 @media (max-width: 768px) {
+  .container {
+    margin: 7.3rem 7vw;
+  }
+
   .land {
     flex-direction: column-reverse;
   }

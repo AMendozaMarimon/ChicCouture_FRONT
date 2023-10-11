@@ -10,7 +10,7 @@
 }
 
 .containerCard {
-  width: 17vw;
+  width: 16vw;
   height: auto;
   flex-wrap: wrap;
   justify-content: center;
@@ -39,14 +39,14 @@
   background-color: transparent;
   padding: 0;
   border: none;
-  margin: 1vw;
+  margin: 0.7vw -0.1vw;
   top: 0;
   right: 0;
   cursor: pointer;
 }
 
 .fav img {
-  width: 70%;
+  width: 50%;
 }
 
 .text {
@@ -73,19 +73,38 @@
 
 @media (max-width: 768px) {
 
+  .containerP {
+    width: 95%;
+    margin: 5vw 0;
+  }
+
   .containerCard {
-    width: 100%;
+    width: 100%; 
   }
 
   .fav {
-    margin: 3vw;
+    margin: 4vw 2vw;
   }
 
   .fav img {
-    width: 90%;
+    width: 60%;
   }
 
   .text {
     margin: 4vw 2.5vw;
+    padding: 0 1vw;
+  }
+
+  .brand {
+    font-size: 5vw;
+  }
+
+  .name {
+    font-size: 4.3vw;
+    margin-top: 2.5vw;
+  }
+
+  .price {
+    font-size: 5vw;
   }
 }

@@ -4,7 +4,7 @@
 
 .title {
   font-family: var(--font-title);
-  font-size: 1.4vw;
+  font-size: 1.2vw;
 }
 
 @media (max-width: 768px) {

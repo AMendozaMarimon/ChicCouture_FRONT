@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { productReducer } from "../../../Redux/reducer";
 import { addProdNoti, removeProdNoti } from "../../../assets/NotiStack";
-import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import styles from "./Card.module.css";
 import Fav from "./Img/Fav.png";
@@ -17,10 +16,9 @@ interface CardsProps {
   brand: string;
 }
 
-export default function Card(props: CardsProps) { 
-
+export default function Card(props: CardsProps) {
   const { id, name, image, price, brand } = props;
-  const [isFav, setIsFav] = useState(false);
+  const [isFav, setIsFav] = useState<boolean>(false);
   const Favs = useSelector((state: productReducer) => state.favorites);
   const dispatch = useDispatch();
 
@@ -36,23 +34,9 @@ export default function Card(props: CardsProps) {
     );
 
     if (isProductInFavorites) {
-      confirmAlert({
-        title: "¿Estás seguro?",
-        message: "Se eliminará de tus favoritos",
-        buttons: [
-          {
-            label: "Si",
-            onClick: () => {
-              dispatch(removeFav({ id: props.id }));
-              setIsFav(false);
-              removeProdNoti(); //Alerta de aviso de eliminación del producto
-            },
-          },
-          {
-            label: "No",
-          },
-        ],
-      });
+      await dispatch(removeFav({ id: props.id }));
+      setIsFav(false);
+      removeProdNoti(); //Alerta de aviso de eliminación del producto
     } else {
       await dispatch(addFav(props));
       addProdNoti(); //Alerta de aviso del añadido del producto

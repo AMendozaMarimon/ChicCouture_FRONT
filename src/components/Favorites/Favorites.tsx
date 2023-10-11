@@ -14,7 +14,7 @@ interface FavsProps {
 
 export default function Favorites() {
   const Favs = useSelector((state: productReducer) => state.favorites);
-  const favsLength = Favs.length;
+  const counterFavs = Favs.length;
 
   return (
     <div className={styles.containerP}>
@@ -24,33 +24,39 @@ export default function Favorites() {
         </div>
         <div className={styles.text}>
           <p>
-            Productos añadidos: <b>{favsLength}</b>
+            Productos añadidos: <b>{counterFavs}</b>
           </p>
           <div className={styles.textP}>
             <p>
-                <b>Puedes agregar o eliminar productos ya no deseados.</b>
+              <b>Puedes agregar o eliminar productos ya no deseados.</b>
             </p>
             <p>
-                Si deseas agregar más a <b>Favoritos</b>, no dejes que se escapen:
+              Si deseas agregar más a <b>Favoritos</b>, sigue viendo los
+              productos, no te los pierdas!
             </p>
           </div>
-          <Link to={'/shooping'}>
+          <Link to={"/shooping"}>
             <button>Seguir viendo</button>
           </Link>
         </div>
       </div>
       <div className={styles.containerCF}>
-        {Favs &&
-          Favs.map((fav: FavsProps) => (
-            <Card
-              key={fav.id}
-              id={fav.id}
-              name={fav.name}
-              image={fav.image}
-              price={fav.price}
-              brand={fav.brand}
-            />
-          ))}
+        <div className={styles.containerCF}>
+          {Favs && Favs.length > 0 ? (
+            Favs.map((fav: FavsProps) => (
+              <Card
+                key={fav.id}
+                id={fav.id}
+                name={fav.name}
+                image={fav.image}
+                price={fav.price}
+                brand={fav.brand}
+              />
+            ))
+          ) : (
+            <img src="" alt="" />
+          )}
+        </div>
       </div>
     </div>
   );
