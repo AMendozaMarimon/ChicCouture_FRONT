@@ -71,6 +71,11 @@
   font-weight: bolder;
 }
 
+.link {
+  text-decoration: none;
+  color: var(--color-black);
+}
+
 @media (max-width: 768px) {
 
   .containerP {

@@ -44,12 +44,12 @@ export const removeFav = (product: idProduct) => {
   return {
     type: REMOVE_FAV,
     payload: product,
-  }
-}
+  };
+};
 
 export const addFav = (props: Props) => {
   return {
     type: ADD_FAV,
     payload: props,
-  }
-}
+  };
+};

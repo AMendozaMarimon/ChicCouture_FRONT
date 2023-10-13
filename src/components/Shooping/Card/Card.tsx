@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { productReducer } from "../../../Redux/reducer";
 import { addProdNoti, removeProdNoti } from "../../../assets/NotiStack";
 import "react-confirm-alert/src/react-confirm-alert.css";
+import { Link } from "react-router-dom";
 import styles from "./Card.module.css";
 import Fav from "./Img/Fav.png";
 import notFav from "./Img/notFav.png";
@@ -26,7 +27,7 @@ export default function Card(props: CardsProps) {
     Favs.forEach((fav: CardsProps) => {
       fav.id === props.id ? setIsFav(true) : []; //Verifica si la Cards ya es Fav
     });
-  }, [Favs]);
+  }, [Favs, props.id]);
 
   const handleFavorites = async () => {
     const isProductInFavorites = Favs.some(
@@ -65,13 +66,15 @@ export default function Card(props: CardsProps) {
     <div className={styles.containerP}>
       <div className={styles.containerCard}>
         <div className={styles.imageContainer}>
-          <img
-            className={styles.img}
-            src={currentImg} //Utiliza la imagen actual
-            alt={name}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-          />
+          <Link to={`/shooping/${id}`} className={styles.link}>
+            <img
+              className={styles.img}
+              src={currentImg} //Utiliza la imagen actual
+              alt={name}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            />
+          </Link>
           <button className={styles.fav} onClick={handleFavorites}>
             {isFav ? (
               <img src={Fav} alt="Fav..." />
@@ -81,9 +84,11 @@ export default function Card(props: CardsProps) {
           </button>
         </div>
         <div className={styles.text}>
-          <p className={styles.brand}>{brand}</p>
-          <p className={styles.name}>{name}</p>
-          <p className={styles.price}>$ {formatPrice(price)}</p>
+          <Link to={`/shooping/${id}`} className={styles.link}>
+            <p className={styles.brand}>{brand}</p>
+            <p className={styles.name}>{name}</p>
+            <p className={styles.price}>$ {formatPrice(price)}</p>
+          </Link>
         </div>
       </div>
     </div>

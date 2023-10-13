@@ -43,7 +43,7 @@ export default function Navbar() {
   };
 
   return (
-    <div className={styles.navbar}>
+    <nav className={styles.navbar}>
       <div className={styles.containerAD}>
         <p>
           Proyecto hecho por: <b>Aimar Mendoza ❤️</b>
@@ -155,6 +155,6 @@ export default function Navbar() {
           />
         </div>
       </div>
-    </div>
+    </nav>
   );
 }

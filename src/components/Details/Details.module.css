@@ -1,0 +1,85 @@
+.containerP {
+  margin: 12.5rem 7vw;
+}
+
+.photosAndName {
+  display: flex;
+  overflow: hidden;
+}
+
+.photos {
+  display: flex;
+  overflow: hidden;
+  width: 65%;
+}
+
+.photos img {
+  width: 50%;
+  margin: 0 10px;
+}
+
+.titles {
+  width: 32%;
+  padding: 0 1.7vw;
+}
+
+.brand {
+  font-family: var(--font-principal);
+  font-weight: bolder;
+  font-size: 1.4vw;
+  margin: 16px 0 5px 0;
+}
+
+.name {
+  font-family: var(--font-principal);
+  margin: 0;
+}
+
+.price {
+  font-family: var(--font-principal);
+  font-size: 1.6vw;
+  margin: 4vw 0 5px 0;
+}
+
+.imp {
+  font-family: var(--font-principal);
+  font-size: 14px;
+  margin: 0 0 3.2vw 0;
+  color: rgb(157, 157, 157);
+}
+
+.containerButtons {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.containerButtons button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  margin: 0 10px 0 0;
+  font-family: var(--font-principal);
+  font-weight: bolder;
+  font-size: 1vw;
+  border-radius: 10px;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.containerButtons button:hover {
+    background-color: var(--color-hover-btn);
+}
+
+.containerButtons p {
+  margin: 10px;
+}
+
+.containerButtons img {
+  display: flex;
+  width: 13%;
+  padding-right: 5px;
+}
