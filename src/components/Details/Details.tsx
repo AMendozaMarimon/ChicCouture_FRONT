@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { productReducer } from "../../../Redux/reducer";
 import { useDispatch, useSelector } from "react-redux";
+import Slider from "react-slick";
 import { useParams } from "react-router-dom";
 import styles from "./Details.module.css";
 import { addFav, removeFav } from "../../Redux/action";
@@ -30,11 +31,25 @@ interface CardsProps {
 export default function Detail() {
   const { id } = useParams<string>(); //Obtengo el ID del producto
   const Favs = useSelector((state: productReducer) => state.favorites);
+  const dispatch = useDispatch();
 
   const [isFav, setIsFav] = useState<boolean>(false);
   const [product, setProduct] = useState<Product | undefined>(undefined); //Guardo la información del producto
+  const [isMobile, setIsMobile] = useState<boolean>(false);
 
-  const dispatch = useDispatch();
+  useEffect(() => {
+    const handleRealize = () => {
+      //Cuando el tamaño de la pantalla es menor que 768 se cambia el estado a TRUE
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener("resize", handleRealize);
+    handleRealize();
+
+    return () => {
+      window.removeEventListener("resize", handleRealize);
+    };
+  }, []);
 
   useEffect(() => {
     //Solicito los datos del producto mediante su ID
@@ -71,29 +86,47 @@ export default function Detail() {
           image: product.image,
           price: product.price,
           brand: product.brandName,
-        }
+        };
         await dispatch(addFav(productProps));
       }
       addProdNoti(); //Alerta de aviso del añadido del producto
     }
   };
 
-  console.log(product);
-
   //Actualiza los números a formato
   const formatPrice = (price: number) => {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   };
 
+  //Configuración del Slider
+  const sliderSetting = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
   return (
     <div className={styles.containerP}>
       <div className={styles.photosAndName}>
-        <div className={styles.photos}>
-          {product &&
-            product.image.map((img, index) => (
-              <img key={index} src={img} alt={img} />
-            ))}
-        </div>
+        {isMobile ? (
+          <Slider {...sliderSetting}>
+            {product &&
+              product.image.map((img, index) => (
+                <div className={styles.slick} key={index}>
+                  <img src={img} alt={img} />
+                </div>
+              ))}
+          </Slider>
+        ) : (
+          <div className={styles.photos}>
+            {product &&
+              product.image.map((img, index) => (
+                <img key={index} src={img} alt={img} />
+              ))}
+          </div>
+        )}
         <div className={styles.titles}>
           <p className={styles.brand}>{product && product.brandName}</p>
           <p className={styles.name}>{product && product.name}</p>
@@ -108,7 +141,7 @@ export default function Detail() {
               <p>Añadir a la bolsa</p>
             </button>
             <button onClick={handleFavorites}>
-              {isFav ? (
+              {isFav ? ( //Dependiendo si ya es Favotiyo o no mostrará un boton diferente
                 <>
                   <p>Añadir a Favoritos</p>
                   <img src={Fav} alt="Fav..." />
@@ -121,7 +154,52 @@ export default function Detail() {
               )}
             </button>
           </div>
+          <p className={styles.delivery}>ENTREGA INMEDIATA</p>
+          <p className={styles.pay}>
+            *Utilizo MercadoPago Sandbox para simular una compra y probar la
+            integración de pagos en mi proyecto antes de su finalización
+          </p>
         </div>
+      </div>
+      <div className={styles.info}>
+        <div>
+          <p className={styles.details}>DETALLES DEL PRODUCTO</p>
+          <div className={styles.info2}>
+            <div className={styles.slideLeft}>
+              <div className={styles.infoP}>
+                <p className={styles.brand2}>{product && product.brandName}</p>
+                <p className={styles.name2}>{product && product.name}</p>
+                <p className={styles.description}>
+                  {product && product.description}
+                </p>
+              </div>
+              <div className={styles.infoP}>
+                <span className={styles.span}>Composición</span>
+                <p className={styles.p}>{product && product.composition}</p>
+                <span className={styles.span}>ID del producto</span>
+                <p className={styles.p}>{product && product.id}</p>
+              </div>
+            </div>
+            <div className={styles.slideRight}>
+              {
+                isMobile ? (
+                    []
+                ) : (
+                  product &&
+                    product.image &&
+                    (product.image[3] ? (
+                      <img src={product.image[2]} alt={product.image[2]} />
+                    ) : (
+                      <img src={product.image[1]} alt={product.image[1]} />
+                    ))
+                )
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p>COMENTARIOS</p>
       </div>
     </div>
   );
