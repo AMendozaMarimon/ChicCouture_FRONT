@@ -123,12 +123,14 @@ export default function Navbar() {
                 </Link>
               </button>
               <button>
-                <img
-                  src={Bag}
-                  alt="Bag..."
-                  draggable="false"
-                  title="Shopping Bag"
-                />
+                <Link to={"/shoopingbag"}>
+                  <img
+                    src={Bag}
+                    alt="Bag..."
+                    draggable="false"
+                    title="Shopping Bag"
+                  />
+                </Link>
               </button>
             </div>
           )}

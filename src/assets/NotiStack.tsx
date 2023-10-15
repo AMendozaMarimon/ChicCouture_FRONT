@@ -11,7 +11,7 @@ export const removeProdNoti = () => {
 };
 
 export const addProdNoti = () => {
-  enqueueSnackbar("El producto se agregó con éxitos!", {
+  enqueueSnackbar("El producto se agregó con éxito!", {
     variant: "success",
     anchorOrigin: {
       vertical: "bottom",
@@ -19,3 +19,23 @@ export const addProdNoti = () => {
     },
   });
 };
+
+export const productInBagNoti = () => {
+  enqueueSnackbar("El producto ya está en la bolsa!", {
+    variant: "info",
+    anchorOrigin: {
+      vertical: "bottom",
+      horizontal: "right",
+    }
+  })
+}
+
+export const addProdBag = () => {
+  enqueueSnackbar("El producto se agregó a la bolsa con éxito!", {
+    variant: "success",
+    anchorOrigin: {
+      vertical: "bottom",
+      horizontal: "right",
+    }
+  }) 
+}

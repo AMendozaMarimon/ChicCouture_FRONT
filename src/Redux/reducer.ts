@@ -1,5 +1,5 @@
 /* eslint-disable no-case-declarations */
-import { ADD_FAV, ALL_PRODUCTS, REMOVE_FAV } from "./action";
+import { ADD_BAGS, ADD_FAV, ALL_PRODUCTS, REMOVE_FAV } from "./action";
 
 interface isProduct {
   id: string;
@@ -12,11 +12,11 @@ interface isProduct {
 const initialState = {
   products: [],
   favorites: [] as isProduct[],
+  bag: [] as isProduct[],
 };
 
-const productReducer = (state = initialState, action: any) => { 
+const productReducer = (state = initialState, action: any) => {
   switch (action.type) {
-
     case ALL_PRODUCTS: //Se trae todos los productos
       return {
         ...state,
@@ -35,7 +35,13 @@ const productReducer = (state = initialState, action: any) => {
         favorites: state.favorites.filter(
           (product) => product.id !== action.payload.id
         ),
-      }
+      };
+
+    case ADD_BAGS:
+      return {
+        ...state,
+        bag: [...state.bag, action.payload],
+      };
 
     default:
       return state;

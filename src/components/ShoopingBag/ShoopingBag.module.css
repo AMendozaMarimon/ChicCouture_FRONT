@@ -1,0 +1,9 @@
+.containerP {
+  margin: 12.5rem 7vw;
+}
+
+.title {
+  font-family: var(--font-title);
+  font-weight: bolder;
+  font-size: 1.4vw;
+}

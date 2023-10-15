@@ -5,8 +5,13 @@ import { useDispatch, useSelector } from "react-redux";
 import Slider from "react-slick";
 import { useParams } from "react-router-dom";
 import styles from "./Details.module.css";
-import { addFav, removeFav } from "../../Redux/action";
-import { addProdNoti, removeProdNoti } from "../../assets/NotiStack";
+import { addBagS, addFav, removeFav } from "../../Redux/action";
+import {
+  addProdBag,
+  addProdNoti,
+  productInBagNoti,
+  removeProdNoti,
+} from "../../assets/NotiStack";
 import Fav from "./Img/Fav.png";
 import notFav from "./Img/notFav.png";
 
@@ -31,6 +36,7 @@ interface CardsProps {
 export default function Detail() {
   const { id } = useParams<string>(); //Obtengo el ID del producto
   const Favs = useSelector((state: productReducer) => state.favorites);
+  const BagS = useSelector((state: productReducer) => state.bag);
   const dispatch = useDispatch();
 
   const [isFav, setIsFav] = useState<boolean>(false);
@@ -107,6 +113,26 @@ export default function Detail() {
     slidesToScroll: 1,
   };
 
+  const handleBagShooping = async () => {
+    const isProductInBagS = BagS.some((bag: CardsProps) => bag.id === id);
+
+    if (isProductInBagS && id) {
+      productInBagNoti(); //Alerta de aviso que el producto ya se encuentra en la bolsa
+    } else {
+      if (product) {
+        const productProps = {
+          id: product.id,
+          name: product.name,
+          image: product.image,
+          price: product.price,
+          brand: product.brandName,
+        };
+        await dispatch(addBagS(productProps));
+        addProdBag(); //Alerta de aviso del añadido del producto
+      }
+    }
+  };
+
   return (
     <div className={styles.containerP}>
       <div className={styles.photosAndName}>
@@ -137,11 +163,11 @@ export default function Detail() {
             Impuestos aduaneros incluidos. <br /> Precio sujeto a cambio.
           </p>
           <div className={styles.containerButtons}>
-            <button>
+            <button onClick={handleBagShooping}>
               <p>Añadir a la bolsa</p>
             </button>
             <button onClick={handleFavorites}>
-              {isFav ? ( //Dependiendo si ya es Favotiyo o no mostrará un boton diferente
+              {isFav ? ( //Dependiendo si ya es Favorito o no, mostrará un boton diferente
                 <>
                   <p>Añadir a Favoritos</p>
                   <img src={Fav} alt="Fav..." />
@@ -181,19 +207,15 @@ export default function Detail() {
               </div>
             </div>
             <div className={styles.slideRight}>
-              {
-                isMobile ? (
-                    []
-                ) : (
-                  product &&
-                    product.image &&
-                    (product.image[3] ? (
-                      <img src={product.image[2]} alt={product.image[2]} />
-                    ) : (
-                      <img src={product.image[1]} alt={product.image[1]} />
-                    ))
-                )
-              }
+              {isMobile
+                ? []
+                : product &&
+                  product.image &&
+                  (product.image[2] ? (
+                    <img src={product.image[2]} alt={product.image[2]} />
+                  ) : (
+                    <img src={product.image[1]} alt={product.image[1]} />
+                  ))}
             </div>
           </div>
         </div>
