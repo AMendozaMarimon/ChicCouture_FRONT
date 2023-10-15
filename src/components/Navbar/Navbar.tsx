@@ -10,16 +10,24 @@ import { productReducer } from "../../Redux/reducer";
 import styles from "./Navbar.module.css";
 
 export default function Navbar() {
-  const Favs = useSelector((state: productReducer) => state.favorites); //Accedo al estado global donde se guardan los favoritos
+  const Favs = useSelector((state: productReducer) => state.favorites);
+  const BagS = useSelector((state: productReducer) => state.bag);
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [value, setValue] = useState<string>("");
 
-  const counterFavs = Favs.length;
+  const counterFavs = Favs.length; //Contador de los productos Favoritos
   let counter = counterFavs;
 
   if (counter > 0) {
     counter = counterFavs;
+  }
+
+  const counterBags = BagS.length; //Contador de los productos en la Bolsa
+  let counterBag = counterBags;
+
+  if (counterBag > 0) {
+    counterBag = counterBags;
   }
 
   useEffect(() => {
@@ -86,7 +94,7 @@ export default function Navbar() {
             //Si la relación de aspecto es isMobile('768px') entonces mostrará solo un botón
             <div className={styles.btn}>
               <Link to={"/favorites"}>
-                <button className={styles.buttonFav}>
+                <button className={styles.buttonCounter}>
                   <img
                     src={Fav}
                     alt="Favorite..."
@@ -94,7 +102,7 @@ export default function Navbar() {
                     title="Favorites"
                   />
                   {counter > 0 && (
-                    <span className={styles.favoriteCounter}>
+                    <span className={styles.counter}>
                       <b>{counter}</b>
                     </span>
                   )}
@@ -107,7 +115,7 @@ export default function Navbar() {
               <button>
                 <img src={User} alt="User..." draggable="false" title="User" />
               </button>
-              <button className={styles.buttonFav}>
+              <button className={styles.buttonCounter}>
                 <Link to={"/favorites"}>
                   <img
                     src={Fav}
@@ -116,13 +124,13 @@ export default function Navbar() {
                     title="Favorites"
                   />
                   {counter > 0 && (
-                    <span className={styles.favoriteCounter}>
+                    <span className={styles.counter}>
                       <b>{counter}</b>
                     </span>
                   )}
                 </Link>
               </button>
-              <button>
+              <button className={styles.buttonCounter}>
                 <Link to={"/shoopingbag"}>
                   <img
                     src={Bag}
@@ -130,6 +138,11 @@ export default function Navbar() {
                     draggable="false"
                     title="Shopping Bag"
                   />
+                  {counterBag > 0 && (
+                    <span className={styles.counter}>
+                      <b>{counterBag}</b>
+                    </span>
+                  )}
                 </Link>
               </button>
             </div>
