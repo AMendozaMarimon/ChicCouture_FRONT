@@ -1,9 +1,99 @@
 .containerP {
-  margin: 12.5rem 7vw;
+  margin: 12.5rem 7vw ;
 }
 
-.title {
+.title h2 {
   font-family: var(--font-title);
   font-weight: bolder;
-  font-size: 1.4vw;
+  font-size: 2.1vw;
+  margin-bottom: 2vw;
+}
+
+.title p, span {
+  font-family: var(--font-principal);
+}
+
+.title span {
+  line-height: 140%;
+}
+
+.title button {
+  font-family: var(--font-principal);
+  font-size: 14px;
+  font-weight: bold;
+  background-color: transparent;
+  border-radius: 10px;
+  padding: 13px;
+  margin-top: 1.4vw;
+  margin-bottom: 4vw;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.title button:hover {
+  background-color: var(--color-hover-btn);
+}
+
+.containerInfoAndPrice {
+  display: flex;
+  align-items: center;
+}
+
+.conLeft {
+  width: 65%;
+}
+
+.conRigth {
+  width: 35%;
+}
+
+.products {
+  display: flex;
+  border-top: 1px solid var(--color-grey-input);
+}
+
+.prodSlideLeft {
+  display: flex;
+  align-items: center;
+}
+
+.imgP {
+ flex: 1;
+}
+
+.productInfo {
+  flex: 3;
+  padding: 2vw;
+}
+
+.productPrice {
+  flex: 2;
+}
+
+.imgP img {
+  width: 19%;
+  padding: 1.5vw;
+}
+
+.brand {
+  font-family: var(--font-principal);
+  font-weight: bolder;
+  font-size: 1.3vw;
+  margin: 0;
+}
+
+.name {
+  font-family: var(--font-principal);
+  margin: 7px 0 15px 0;
+}
+
+.idP {
+  font-family: var(--font-principal);
+  font-weight: bolder;
+  margin: 10px 0;
+}
+
+.id {
+  font-family: var(--font-principal); 
+  margin: 0;
 }

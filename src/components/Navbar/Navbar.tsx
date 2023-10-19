@@ -115,8 +115,8 @@ export default function Navbar() {
               <button>
                 <img src={User} alt="User..." draggable="false" title="User" />
               </button>
-              <button className={styles.buttonCounter}>
-                <Link to={"/favorites"}>
+              <Link to={"/favorites"}>
+                <button className={styles.buttonCounter}>
                   <img
                     src={Fav}
                     alt="Favorite..."
@@ -128,10 +128,10 @@ export default function Navbar() {
                       <b>{counter}</b>
                     </span>
                   )}
-                </Link>
-              </button>
-              <button className={styles.buttonCounter}>
-                <Link to={"/shoopingbag"}>
+                </button>
+              </Link>
+              <Link to={"/shoopingbag"}>
+                <button className={styles.buttonCounter}>
                   <img
                     src={Bag}
                     alt="Bag..."
@@ -143,8 +143,8 @@ export default function Navbar() {
                       <b>{counterBag}</b>
                     </span>
                   )}
-                </Link>
-              </button>
+                </button>
+              </Link>
             </div>
           )}
         </div>

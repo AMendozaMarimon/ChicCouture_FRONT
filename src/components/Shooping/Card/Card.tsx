@@ -19,7 +19,7 @@ interface CardsProps {
 
 export default function Card(props: CardsProps) {
   const { id, name, image, price, brand } = props;
-  const [isFav, setIsFav] = useState<boolean>(false);
+  const [isFav, setIsFav] = useState(false);
   const Favs = useSelector((state: productReducer) => state.favorites);
   const dispatch = useDispatch();
 
