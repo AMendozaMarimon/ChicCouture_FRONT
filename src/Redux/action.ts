@@ -3,7 +3,7 @@ export const ALL_PRODUCTS = "ALL_PRODUCTS";
 export const ADD_FAV = "ADD_FAV";
 export const REMOVE_FAV = "REMOVE_FAV";
 export const ADD_BAGS = "ADD_BAGS";
-export const DELETE_BAGS = "DELETE_BAGS";
+export const REMOVE_BAGS = "REMOVE_BAGS";
 
 interface Products {
   id: string;
@@ -67,11 +67,10 @@ export const addBagS = (props: Props) => {
   };
 };
 
-export const deleteBagS = (product: idProduct) => {
+export const removeBagS = (product: idProduct) => {
   //OBIENE EL ID DEL PRODUCTO PARA PODER ELIMINARLO
-  console.log(product)
   return {
-    type: DELETE_BAGS,
+    type: REMOVE_BAGS,
     payload: product,
   };
 };

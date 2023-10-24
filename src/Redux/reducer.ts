@@ -3,7 +3,7 @@ import {
   ADD_BAGS,
   ADD_FAV,
   ALL_PRODUCTS,
-  DELETE_BAGS,
+  REMOVE_BAGS,
   REMOVE_FAV,
 } from "./action";
 
@@ -49,11 +49,10 @@ const productReducer = (state = initialState, action: any) => {
         bag: [...state.bag, action.payload],
       };
 
-    case DELETE_BAGS: //Elimina el producto en específico de la Bolsa de Compras
-    console.log(action.payload)
+    case REMOVE_BAGS:
       return {
         ...state,
-        bag: state.bag.filter((product) => product.id !== action.payload),
+        bag: state.bag.filter((product) => product.id !== action.payload.id),
       };
 
     default:

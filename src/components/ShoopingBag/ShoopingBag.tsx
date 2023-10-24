@@ -1,9 +1,9 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { productReducer } from "../../Redux/reducer";
 import { Link } from "react-router-dom";
 import buttonDelete from "./Icons/delete.svg";
 import styles from "./ShoopingBag.module.css";
-import { deleteBagS } from "../../Redux/action";
+import { removeBagS } from "../../Redux/action";
 
 interface Product {
   id: string;
@@ -19,7 +19,7 @@ interface ProductId {
 
 export default function ShoopingBag() {
   const ShopBag = useSelector((state: productReducer) => state.bag);
-  console.log(ShopBag)
+  const dispatch = useDispatch();
 
   const counterBag = ShopBag.length;
 
@@ -29,8 +29,7 @@ export default function ShoopingBag() {
   };
 
   const handleDeleteShopBag = async (id: ProductId) => {
-    console.log(id)
-    await deleteBagS(id);
+    await dispatch(removeBagS(id));
   }
 
   return (
