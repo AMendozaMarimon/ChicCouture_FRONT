@@ -1,5 +1,5 @@
 .containerP {
-  margin: 12.5rem 7vw ;
+  margin: 12.5rem 7vw;
 }
 
 .title h2 {
@@ -9,7 +9,8 @@
   margin-bottom: 2vw;
 }
 
-.title p, span {
+.title p,
+span {
   font-family: var(--font-principal);
 }
 
@@ -55,30 +56,37 @@
 .prodSlideLeft {
   display: flex;
   align-items: center;
+  justify-content: center;
+}
+
+.imgP a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .imgP {
- flex: 1;
+  flex: 1;
 }
 
 .productInfo {
-  flex: 3;
-  padding: 2vw;
+  flex: 2;
+  padding: 2.5vw;
 }
 
 .productPrice {
-  flex: 2;
+  flex: 1;
 }
 
 .imgP img {
-  width: 19%;
+  width: 50%;
   padding: 1.5vw;
 }
 
 .brand {
   font-family: var(--font-principal);
   font-weight: bolder;
-  font-size: 1.3vw;
+  font-size: 1.2vw;
   margin: 0;
 }
 
@@ -94,6 +102,44 @@
 }
 
 .id {
-  font-family: var(--font-principal); 
+  font-family: var(--font-principal);
   margin: 0;
+}
+
+.productPrice {
+  display: flex;
+  padding: 2vw;
+  align-items: center;
+  justify-content: center;
+}
+
+.productPrice p {
+  font-family: var(--font-principal);
+}
+
+.deleteButtonCont {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1vw;
+}
+
+.deleteButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  border-radius: 20%;
+  padding: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.deleteButton:hover {
+  background-color: var(--color-hover-btn);
+}
+
+.deleteButton img {
+  width: 1rem;
 }

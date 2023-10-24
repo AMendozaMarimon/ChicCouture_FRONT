@@ -1,7 +1,9 @@
 import { useSelector } from "react-redux";
 import { productReducer } from "../../Redux/reducer";
 import { Link } from "react-router-dom";
+import buttonDelete from "./Icons/delete.svg";
 import styles from "./ShoopingBag.module.css";
+import { deleteBagS } from "../../Redux/action";
 
 interface Product {
   id: string;
@@ -11,8 +13,13 @@ interface Product {
   price: number;
 }
 
+interface ProductId {
+  id: string;
+}
+
 export default function ShoopingBag() {
   const ShopBag = useSelector((state: productReducer) => state.bag);
+  console.log(ShopBag)
 
   const counterBag = ShopBag.length;
 
@@ -20,6 +27,11 @@ export default function ShoopingBag() {
   const formatPrice = (price: number) => {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   };
+
+  const handleDeleteShopBag = async (id: ProductId) => {
+    console.log(id)
+    await deleteBagS(id);
+  }
 
   return (
     <div className={styles.containerP}>
@@ -43,7 +55,7 @@ export default function ShoopingBag() {
         <div className={styles.conLeft}>
           {ShopBag &&
             ShopBag.map((product: Product) => (
-              <div className={styles.products}>
+              <div className={styles.products} key={product.id}>
                 <div className={styles.prodSlideLeft}>
                   <div className={styles.imgP}>
                     <Link to={`/shooping/${product.id}`}>
@@ -62,7 +74,15 @@ export default function ShoopingBag() {
                   </div>
                 </div>
                 <div className={styles.productPrice}>
-                  <p>$ {formatPrice(product.price)}</p>
+                  <p>${formatPrice(product.price)}</p>
+                </div>
+                <div className={styles.deleteButtonCont}>
+                  <button className={styles.deleteButton} onClick={() => handleDeleteShopBag({id: product.id})}>
+                    <img 
+                      src={buttonDelete} 
+                      alt={buttonDelete}
+                      draggable="false" />
+                  </button>
                 </div>
               </div>
             ))}

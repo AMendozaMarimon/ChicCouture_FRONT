@@ -1,5 +1,11 @@
 /* eslint-disable no-case-declarations */
-import { ADD_BAGS, ADD_FAV, ALL_PRODUCTS, REMOVE_FAV } from "./action";
+import {
+  ADD_BAGS,
+  ADD_FAV,
+  ALL_PRODUCTS,
+  DELETE_BAGS,
+  REMOVE_FAV,
+} from "./action";
 
 interface isProduct {
   id: string;
@@ -29,7 +35,7 @@ const productReducer = (state = initialState, action: any) => {
         favorites: [...state.favorites, action.payload],
       };
 
-    case REMOVE_FAV: //Elimina un nuevo producto
+    case REMOVE_FAV: //Elimina el producto en específico de Favoritos
       return {
         ...state,
         favorites: state.favorites.filter(
@@ -37,10 +43,17 @@ const productReducer = (state = initialState, action: any) => {
         ),
       };
 
-    case ADD_BAGS:
+    case ADD_BAGS: //Agrega un nuevo producto a la Bolsa de Compras
       return {
         ...state,
         bag: [...state.bag, action.payload],
+      };
+
+    case DELETE_BAGS: //Elimina el producto en específico de la Bolsa de Compras
+    console.log(action.payload)
+      return {
+        ...state,
+        bag: state.bag.filter((product) => product.id !== action.payload),
       };
 
     default:
