@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import buttonDelete from "./Icons/delete.svg";
 import styles from "./ShoopingBag.module.css";
 import { removeBagS } from "../../Redux/action";
+import { removeProdBagNoti } from "../../assets/NotiStack";
 
 interface Product {
   id: string;
@@ -21,34 +22,28 @@ export default function ShoopingBag() {
   const ShopBag = useSelector((state: productReducer) => state.bag);
   const dispatch = useDispatch();
 
-  const counterBag = ShopBag.length;
-
   //Actualiza los números a formato
   const formatPrice = (price: number) => {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   };
 
   const handleDeleteShopBag = async (id: ProductId) => {
-    await dispatch(removeBagS(id));
-  }
+    await dispatch(removeBagS(id)); //Envía el ID para poder eliminar el producto
+    removeProdBagNoti();
+  };
+
+  const totalPrice = () => {
+    let total = 0;
+    ShopBag.forEach((product: Product) => {
+      total += product.price;
+    });
+    return total; //Devuelve el precio total
+  };
 
   return (
     <div className={styles.containerP}>
       <div className={styles.title}>
         <h2>TU BOLSA DE COMPRAS</h2>
-        <p>
-          Productos agregador: <b>{counterBag}</b>
-        </p>
-        <span>
-          <b>Puedes agregar o eliminar productos ya no deseados.</b>
-          <br />
-          Si deseas agregar más a tus <b>Compras</b>, sigue viendo los
-          productos, no te los pierdas!
-        </span>
-        <br />
-        <Link to={"/shooping"}>
-          <button>Seguir viendo</button>
-        </Link>
       </div>
       <div className={styles.containerInfoAndPrice}>
         <div className={styles.conLeft}>
@@ -76,17 +71,46 @@ export default function ShoopingBag() {
                   <p>${formatPrice(product.price)}</p>
                 </div>
                 <div className={styles.deleteButtonCont}>
-                  <button className={styles.deleteButton} onClick={() => handleDeleteShopBag({id: product.id})}>
-                    <img 
-                      src={buttonDelete} 
+                  <button
+                    className={styles.deleteButton}
+                    onClick={() => handleDeleteShopBag({ id: product.id })}
+                  >
+                    <img
+                      src={buttonDelete}
                       alt={buttonDelete}
-                      draggable="false" />
+                      draggable="false"
+                    />
                   </button>
                 </div>
               </div>
             ))}
         </div>
-        <div className={styles.conRigth}>Holaa</div>
+        <div className={styles.conRigth}>
+          <div className={styles.contLeftT}>
+            <div className={styles.resumen}>
+              <p>Resumen</p>
+            </div>
+            <div className={styles.subtotal}>
+              <div>
+                <p>Subtotal</p>
+              </div>
+              <div>${formatPrice(totalPrice())}</div>
+            </div>
+          </div>
+          <div className={styles.contRigthT}>
+            <div className={styles.total}>
+              <div className={styles.totalP}>
+                <p>Total</p>
+              </div>
+              <div className={styles.priceT}>
+                <p>
+                  COP <b>${formatPrice(totalPrice())}</b>
+                </p>
+                <span>Impuestos aduaneros incluidos</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
