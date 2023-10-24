@@ -82,12 +82,14 @@ export default function Navbar() {
           )}
         </div>
         <div className={styles.divLogo}>
-          <img
-            className={styles.logo}
-            draggable="false"
-            src={Logo}
-            alt="Logo.."
-          />
+          <Link to={"/"}>
+            <img
+              className={styles.logo}
+              draggable="false"
+              src={Logo}
+              alt="Logo.."
+            />
+          </Link>
         </div>
         <div>
           {isMobile ? (

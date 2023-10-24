@@ -3,7 +3,7 @@
 }
 
 .title {
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
 }
 
 .title h2 {
@@ -125,7 +125,6 @@
 .conRigth {
   width: 30%;
   padding-left: 2.3rem;
-
 }
 
 .contLeftT {
@@ -135,14 +134,14 @@
 
 .resumen {
   font-family: var(--font-principal);
-  font-size: 1.3rem
+  font-size: 1.3rem;
 }
 
 .subtotal {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: var(--font-principal);;
+  font-family: var(--font-principal);
 }
 
 .subtotal p {
@@ -151,12 +150,12 @@
 
 .contRigthT {
   border-top: 1px solid var(--color-grey-input);
-  padding-top: 2rem;
+  padding: 2rem 0;
 }
 
 .priceT {
- width: 70%;
- text-align: right;
+  width: 70%;
+  text-align: right;
 }
 
 .total {
@@ -177,4 +176,44 @@
 .total span {
   font-size: 0.8rem;
   font-weight: lighter;
+}
+
+.buttonT button {
+  display: inline-block;
+  width: 100%;
+  padding: 0.7rem 0.5rem;
+  background-color: var(--color-black);
+  color: white;
+  border-radius: 10px;
+  font-family: var(--font-principal);
+  font-weight: bolder;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.buttonT button:hover {
+  background-color: var(--color-hover-btn);
+  color: var(--color-black);
+}
+
+.alert0 p {
+  font-family: var(--font-principal);
+  margin: 0.4rem 0; 
+}
+
+.alert0 button {
+  margin: 1.3rem 0;
+  font-family: var(--font-principal);
+  font-weight: bolder;
+  padding: 0.8rem 1rem;
+  background-color: var(--color-black);
+  border-radius: 7px;
+  color: white;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.alert0 button:hover {
+  background-color: var(--color-hover-btn);
+  color: var(--color-black);
 }
