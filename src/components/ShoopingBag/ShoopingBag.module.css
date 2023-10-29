@@ -198,7 +198,7 @@
 
 .alert0 p {
   font-family: var(--font-principal);
-  margin: 0.4rem 0; 
+  margin: 0.4rem 0;
 }
 
 .alert0 button {
@@ -216,4 +216,74 @@
 .alert0 button:hover {
   background-color: var(--color-hover-btn);
   color: var(--color-black);
+}
+
+@media (max-width: 768px) {
+  .containerP {
+    margin: 9rem 7vw;
+  }
+
+  .title h2 {
+    font-size: 6vw;
+    margin-bottom: 2rem;
+  }
+
+  .alert0 p {
+    text-align: justify;
+  }
+
+  .containerInfoAndPrice {
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+  }
+
+  .conLeft {
+    width: 100%;
+    max-height: 35rem;
+    overflow: auto;
+  }
+
+  .products {
+    flex-direction: column;
+    padding-top: 1rem;
+  }
+
+  .imgP {
+    justify-content: flex-start;
+  }
+
+  .imgP img {
+    width: 70%;
+    padding: 0;
+  }
+
+  .brand {
+    font-size: 4.5vw;
+    margin: 0;
+  }
+
+  .idP {
+    font-size: 3.5vw;
+  }
+
+  .productPrice p {
+    font-weight: bolder;
+  }
+
+  .deleteButton {
+    padding: 0;
+    margin-bottom: 1rem;
+  }
+
+  .deleteButton img {
+    width: 1.2rem;
+  }
+
+  .conRigth {
+    width: 100%;
+    padding: 0;
+    margin-top: 1rem;
+    height: auto;
+  }
 }

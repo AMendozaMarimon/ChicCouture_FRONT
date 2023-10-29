@@ -12,9 +12,9 @@ import styles from "./Navbar.module.css";
 export default function Navbar() {
   const Favs = useSelector((state: productReducer) => state.favorites);
   const BagS = useSelector((state: productReducer) => state.bag);
-  const [isMobile, setIsMobile] = useState<boolean>(false);
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  const [value, setValue] = useState<string>("");
+  const [isMobile, setIsMobile] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [value, setValue] = useState("");
 
   const counterFavs = Favs.length; //Contador de los productos Favoritos
   let counter = counterFavs;
@@ -114,9 +114,11 @@ export default function Navbar() {
           ) : (
             //Si no es isMobile mostrará todos los botonesS
             <div className={styles.btn}>
-              <button>
-                <img src={User} alt="User..." draggable="false" title="User" />
-              </button>
+              <Link to={"/login"}>
+                <button>
+                  <img src={User} alt="User..." draggable="false" title="User" />
+                </button>
+              </Link>
               <Link to={"/favorites"}>
                 <button className={styles.buttonCounter}>
                   <img

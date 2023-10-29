@@ -46,7 +46,7 @@ export default function ShoopingBag() {
         <h2>TU BOLSA DE COMPRAS</h2>
       </div>
       {ShopBag && ShopBag.length === 0 ? (
-        <div className={styles.alert0}>
+        <div className={styles.alert0}> 
           <p>Aún no tienes artículos en tu bolsa.</p>
           <p>
             <b>
@@ -124,7 +124,7 @@ export default function ShoopingBag() {
                 </div>
                 <div className={styles.priceT}>
                   <p>
-                    COP <b>${formatPrice(totalPrice())}</b>
+                    COP <b>${formatPrice(totalPrice())}</b>   
                   </p>
                   <span>Impuestos aduaneros incluidos</span>
                 </div>
