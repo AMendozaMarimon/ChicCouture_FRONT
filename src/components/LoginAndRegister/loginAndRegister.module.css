@@ -53,6 +53,28 @@
   border-color: var(--color-grey-input);
 }
 
+.passwordButton {
+  display: flex;
+  align-items: center;
+}
+
+.passwordButton input {
+  margin-right: 1rem;
+}
+
+.passwordButton button {
+  display: flex;
+  align-items: center;
+  border: 2px solid var(--color-grey-input);
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.passwordButton img {
+  padding: 3px;
+}
+
 .title h2 {
   font-family: var(--font-title);
   font-size: 1.8rem;
@@ -77,4 +99,86 @@
 
 .buttons .select {
   border-bottom: 2px solid var(--color-black);
+}
+
+.textPassword {
+  margin: 0.5rem 0 1.3rem 0;
+  width: 50%;
+  font-family: var(--font-principal);
+  font-size: 0.9rem;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.textPassword:hover {
+  color: var(--color-grey-input);
+}
+
+.buttonLogin {
+  font-family: var(--font-principal);
+  color: white;
+  background-color: var(--color-black);
+  border-radius: 7px;
+  font-weight: bolder;
+  font-size: 15px;
+  padding: 0.5rem 0;
+  width: 43%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.buttonLogin:hover {
+  color: var(--color-black);
+  background-color: var(--color-hover-btn);
+}
+
+.text {
+  display: flex;
+  width: 43%;
+  margin: 1.5rem 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttonLoginGoogle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-principal);
+  color: var(--color-black);
+  background-color: transparent;
+  border-radius: 7px;
+  font-weight: bolder;
+  font-size: 15px;
+  padding: 0.5rem 0;
+  width: 43%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.buttonLoginGoogle:hover {
+  background-color: var(--color-hover-btn);
+}
+
+.buttonLoginGoogle img {
+  width: 1.5rem;
+}
+
+.buttonLoginGoogle p {
+  margin: 0 0.5rem;
+}
+
+.textPassword2 {
+  width: 50%;
+  margin: 2rem 0;
+  font-family: var(--font-principal);
+  font-size: 0.9rem;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.textPassword2:hover {
+  color: var(--color-grey-input);
 }

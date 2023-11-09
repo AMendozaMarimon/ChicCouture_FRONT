@@ -2,6 +2,7 @@ import { ChangeEvent, useState } from "react";
 import WOMAN from "./Img/WOMAN.webp";
 import VISIBLE from "./Icons/VISIBLE.png";
 import INVISIBLE from "./Icons/INVISIBLE.png";
+import GOOGLE from "./Icons/GOOGLE.svg";
 import styles from "./loginAndRegister.module.css";
 
 export default function LoginAndRegister() {
@@ -71,27 +72,35 @@ export default function LoginAndRegister() {
                   required
                 />
                 <label>Contraseña</label>
-                <div>
-                  <>
-                    <input
-                      type={showPassword ? "text" : "password"}
-                      name="password"
-                      value={valueLogin.password}
-                      onChange={handleChangeValue}
-                      required
+                <div className={styles.passwordButton}>
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    value={valueLogin.password}
+                    onChange={handleChangeValue}
+                    required
+                  />
+                  <button type="button" onClick={togglePasswordVisibility}>
+                    <img
+                      src={showPassword ? VISIBLE : INVISIBLE}
+                      alt={showPassword ? "VISIBLE" : "INVISIBLE"}
                     />
-                    <button type="button" onClick={togglePasswordVisibility}>
-                      <img
-                        src={
-                          showPassword
-                            ? VISIBLE
-                            : INVISIBLE
-                        }
-                        alt={showPassword ? "VISIBLE" : "INVISIBLE"}
-                      />
-                    </button>
-                  </>
+                  </button>
                 </div>
+                <p className={styles.textPassword}>
+                  ¿Se te ha olvido tu contraseña?
+                </p>
+                <button className={styles.buttonLogin}>Iniciar sesión</button>
+                <p className={styles.text}>O</p>
+                <button type="button" className={styles.buttonLoginGoogle}>
+                  <>
+                    <img src={GOOGLE} alt="Google..." draggable="false" />
+                    <p>Google</p>
+                  </>
+                </button>
+                <p className={styles.textPassword2} onClick={() => setIsSignIn(false)}>
+                  ¿Es tu primera vez en ChiCouture? REGÍSTRATE! 
+                </p>
               </div>
             </form>
           ) : (
