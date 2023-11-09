@@ -10,20 +10,23 @@ import { productReducer } from "../../Redux/reducer";
 import styles from "./Navbar.module.css";
 
 export default function Navbar() {
+
   const Favs = useSelector((state: productReducer) => state.favorites);
   const BagS = useSelector((state: productReducer) => state.bag);
   const [isMobile, setIsMobile] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [value, setValue] = useState("");
 
-  const counterFavs = Favs.length; //Contador de los productos Favoritos
+  // Contador de los favoritos
+  const counterFavs = Favs.length; 
   let counter = counterFavs;
 
   if (counter > 0) {
     counter = counterFavs;
   }
 
-  const counterBags = BagS.length; //Contador de los productos en la Bolsa
+  // Contador de las bolsas
+  const counterBags = BagS.length; 
   let counterBag = counterBags;
 
   if (counterBag > 0) {
@@ -32,7 +35,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleRealize = () => {
-      //Cuando el tamaño de la pantalla es menor que 768 se cambia el estado a TRUE
+      // Cuando el tamaño de la pantalla es menor que 768 se cambia el estado a TRUE
       setIsMobile(window.innerWidth <= 768);
     };
 
@@ -45,7 +48,7 @@ export default function Navbar() {
   }, []);
 
   const handleValueInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //Obtengo el valor del input para futuras solicitudes
+    // Obtengo el valor del input para futuras solicitudes
     const { value } = e.target;
     setValue(value);
   };
@@ -60,7 +63,7 @@ export default function Navbar() {
       <div className={styles.container}>
         <div>
           {isMobile ? (
-            //Si la relación de aspecto es isMobile('768px') entonces mostrará el boton de MENÚ
+            // Si la relación de aspecto es isMobile('768px') entonces mostrará el boton de MENÚ
             <>
               <div className={styles.divMenu}>
                 <img
@@ -72,7 +75,7 @@ export default function Navbar() {
               </div>
             </>
           ) : (
-            //Si no es isMobile muestra los botones por defectos
+            // Si no es isMobile muestra los botones por defectos
             <div className={styles.btnUl}>
               <ul>
                 <li>Hombre</li>
@@ -93,7 +96,7 @@ export default function Navbar() {
         </div>
         <div>
           {isMobile ? (
-            //Si la relación de aspecto es isMobile('768px') entonces mostrará solo un botón
+            // Si la relación de aspecto es isMobile('768px') entonces mostrará solo un botón
             <div className={styles.btn}>
               <Link to={"/favorites"}>
                 <button className={styles.buttonCounter}>
@@ -112,7 +115,7 @@ export default function Navbar() {
               </Link>
             </div>
           ) : (
-            //Si no es isMobile mostrará todos los botonesS
+            // Si no es isMobile mostrará todos los botonesS
             <div className={styles.btn}>
               <Link to={"/login"}>
                 <button>

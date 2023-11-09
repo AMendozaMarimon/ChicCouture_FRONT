@@ -25,7 +25,8 @@ export default function Card(props: CardsProps) {
 
   useEffect(() => {
     Favs.forEach((fav: CardsProps) => {
-      fav.id === props.id ? setIsFav(true) : []; //Verifica si la Cards ya es Fav
+      // Comprueba si el producto ya se encuentra en favoritos
+      fav.id === props.id ? setIsFav(true) : [];
     });
   }, [Favs, props.id]);
 
@@ -37,27 +38,29 @@ export default function Card(props: CardsProps) {
     if (isProductInFavorites) {
       await dispatch(removeFav({ id: props.id }));
       setIsFav(false);
-      removeProdNoti(); //Alerta de aviso de eliminación del producto
+      // Alerta de aviso de eliminación del producto
+      removeProdNoti();
     } else {
       await dispatch(addFav(props));
-      addProdNoti(); //Alerta de aviso del añadido del producto
+      // Alerta de aviso del añadido del producto
+      addProdNoti();
     }
   };
 
-  //Actualiza los números a formato
+  // Actualiza los números a formato
   const formatPrice = (price: number) => {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   };
 
-  //Siempre mostrará la primera imagen por default
+  // Siempre mostrará la primera imagen por default
   const [currentImg, setCurrentImg] = useState(image[0]);
 
-  //Se cambia la imagen cuando se pasa el mouse por encima
+  // Se cambia la imagen cuando se pasa el mouse por encima
   const handleMouseEnter = () => {
     setCurrentImg(image[1]);
   };
 
-  //Regresa a la imagen por default cuando el mouse sale
+  // Regresa a la imagen por default cuando el mouse sale
   const handleMouseLeave = () => {
     setCurrentImg(image[0]);
   };

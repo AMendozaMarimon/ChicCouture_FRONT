@@ -13,7 +13,10 @@ interface FavsProps {
 }
 
 export default function Favorites() {
+
   const Favs = useSelector((state: productReducer) => state.favorites);
+
+  // Contador de los favoritos
   const counterFavs = Favs.length;
 
   return (

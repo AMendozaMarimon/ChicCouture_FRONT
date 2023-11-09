@@ -34,7 +34,10 @@ interface CardsProps {
 }
 
 export default function Detail() {
-  const { id } = useParams<string>(); //Obtengo el ID del producto
+
+  // Obtiene el ID del producto
+  const { id } = useParams<string>(); 
+  
   const Favs = useSelector((state: productReducer) => state.favorites);
   const BagS = useSelector((state: productReducer) => state.bag);
   const dispatch = useDispatch();
@@ -45,7 +48,7 @@ export default function Detail() {
 
   useEffect(() => {
     const handleRealize = () => {
-      //Cuando el tamaño de la pantalla es menor que 768 se cambia el estado a TRUE
+      // Cuando el tamaño de la pantalla es menor que 768 se cambia el estado a TRUE
       setIsMobile(window.innerWidth <= 768);
     };
 
@@ -57,9 +60,9 @@ export default function Detail() {
     };
   }, []);
 
+  // Obtiene el producto por su ID
   useEffect(() => {
-    //Solicito los datos del producto mediante su ID
-    const fetchProduct = async () => {
+        const fetchProduct = async () => {
       try {
         const endpoint = `http://localhost:3000/products/${id}`;
         const { data } = await axios.get<Product>(endpoint);
@@ -71,19 +74,22 @@ export default function Detail() {
     fetchProduct();
   }, [id]);
 
+  // Comprueba si el producto ya se encuentra en favoritos
   useEffect(() => {
     Favs.forEach((fav: CardsProps) => {
-      fav.id === id ? setIsFav(true) : []; //Verifica si la Cards ya es Fav
+      fav.id === id ? setIsFav(true) : []; 
     });
   }, [Favs, id]);
 
+  // Verific si el producto ya se encuentra en favoritos
   const handleFavorites = async () => {
     const isProductInFavorites = Favs.some((fav: CardsProps) => fav.id === id);
 
     if (isProductInFavorites && id) {
       await dispatch(removeFav({ id: id }));
       setIsFav(false);
-      removeProdNoti(); //Alerta de aviso de eliminación del producto
+      // Alerta de aviso de eliminación del producto
+      removeProdNoti(); 
     } else {
       if (product) {
         const productProps = {
@@ -95,16 +101,17 @@ export default function Detail() {
         };
         await dispatch(addFav(productProps));
       }
-      addProdNoti(); //Alerta de aviso del añadido del producto
+      // Alerta de aviso del añadido del producto
+      addProdNoti(); 
     }
   };
 
-  //Actualiza los números a formato
+  // Actualiza los números a formato
   const formatPrice = (price: number) => {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   };
 
-  //Configuración del Slider
+  // Configuración del Slider
   const sliderSetting = {
     dots: true,
     infinite: true,
