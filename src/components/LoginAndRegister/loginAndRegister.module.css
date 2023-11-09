@@ -1,0 +1,80 @@
+.container {
+  margin: 10.9rem 7vw;
+  display: flex;
+}
+
+.sideLeft {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40%;
+  overflow: hidden;
+}
+
+.sideLeft img {
+  width: 100%;
+  height: auto;
+}
+
+.sideRigth {
+  display: flex;
+  width: 60%;
+}
+
+.content {
+  width: 100%;
+  padding: 1.5rem 0 0 3rem;
+}
+
+.form {
+  padding: 2rem 0;
+  width: 100%;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+.formGroup label {
+  font-family: var(--font-principal);
+  font-size: 1.1rem;
+}
+
+.formGroup input {
+  font-family: var(--font-principal);
+  font-weight: bolder;
+  width: 40%;
+  margin: 1.2rem 0;
+  padding: 0.7rem;
+  border-radius: 7px;
+  outline: none;
+  border-color: var(--color-grey-input);
+}
+
+.title h2 {
+  font-family: var(--font-title);
+  font-size: 1.8rem;
+  margin-bottom: 2.1rem;
+}
+
+.buttons {
+  border-bottom: 2px solid var(--color-line-button);
+  opacity: 1;
+}
+
+.buttons button {
+  display: inline-block;
+  background-color: transparent;
+  border: none;
+  font-family: var(--font-principal);
+  font-size: 1rem;
+  margin-right: 1rem;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.buttons .select {
+  border-bottom: 2px solid var(--color-black);
+}
