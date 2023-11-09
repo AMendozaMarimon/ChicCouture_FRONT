@@ -1,9 +1,12 @@
 import { ChangeEvent, useState } from "react";
+import axios from "axios";
 import WOMAN from "./Img/WOMAN.webp";
 import VISIBLE from "./Icons/VISIBLE.png";
 import INVISIBLE from "./Icons/INVISIBLE.png";
 import GOOGLE from "./Icons/GOOGLE.svg";
 import styles from "./loginAndRegister.module.css";
+import { loginDenied, loginSuccess } from "../../assets/NotiStack";
+
 
 export default function LoginAndRegister() {
   // Indica si es iniciar sesión o registrarse
@@ -32,8 +35,31 @@ export default function LoginAndRegister() {
     setValueLogin(uptadeValueLogin);
   };
 
+  // Cambia el type de la contrasena
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
+  };
+
+  // Envia los datos del Login
+  const handleSubmitLogin = async () => {
+    try {
+      const endpoint = "http://localhost:3000/login";
+      const { data, status } = await axios.post(endpoint, valueLogin);
+      // Si se inicia sesion correctamente 
+      if (status === 200) {
+        // Alerta de inicio de sesion
+        loginSuccess();
+      }
+    } catch (error: any) {
+      // Si no se inicia sesion
+      if (error.response) {
+        const { status } = error.response;
+        if (status === 404) {
+          // Alerta de credenciales incorrectas
+          loginDenied()
+        }
+      }
+    }
   };
 
   return (
@@ -90,7 +116,13 @@ export default function LoginAndRegister() {
                 <p className={styles.textPassword}>
                   ¿Se te ha olvido tu contraseña?
                 </p>
-                <button className={styles.buttonLogin}>Iniciar sesión</button>
+                <button
+                  type="button"
+                  className={styles.buttonLogin}
+                  onClick={handleSubmitLogin}
+                >
+                  Iniciar sesión
+                </button>
                 <p className={styles.text}>O</p>
                 <button type="button" className={styles.buttonLoginGoogle}>
                   <>
@@ -98,8 +130,11 @@ export default function LoginAndRegister() {
                     <p>Google</p>
                   </>
                 </button>
-                <p className={styles.textPassword2} onClick={() => setIsSignIn(false)}>
-                  ¿Es tu primera vez en ChiCouture? REGÍSTRATE! 
+                <p
+                  className={styles.textPassword2}
+                  onClick={() => setIsSignIn(false)}
+                >
+                  ¿Es tu primera vez en ChiCouture? REGÍSTRATE!
                 </p>
               </div>
             </form>

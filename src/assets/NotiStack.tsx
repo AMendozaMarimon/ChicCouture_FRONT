@@ -49,3 +49,23 @@ export const removeProdBagNoti = () => {
     },
   });
 };
+
+export const loginSuccess= () => {
+  enqueueSnackbar("Bienvenido!", {
+    variant: "success",
+    anchorOrigin: {
+      vertical: "bottom",
+      horizontal: "right",
+    },
+  });
+}
+
+export const loginDenied = () => {
+  enqueueSnackbar("Credenciales incorrectas!", {
+    variant: "error",
+    anchorOrigin: {
+      vertical: "bottom",
+      horizontal: "right",
+    },
+  });
+}
