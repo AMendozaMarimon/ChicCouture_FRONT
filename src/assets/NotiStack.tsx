@@ -69,3 +69,33 @@ export const loginDenied = () => {
     },
   });
 }
+
+export const loginError = () => {
+  enqueueSnackbar("Falta datos de inicio de sesión!", {
+    variant: "error",
+    anchorOrigin: {
+      vertical: "bottom",
+      horizontal: "right",
+    },
+  });
+}
+
+export const loginUserNotFound = () => {
+  enqueueSnackbar("Usuario no encontrado en la base de datos!", {
+    variant: "error",
+    anchorOrigin: {
+      vertical: "bottom",
+      horizontal: "right",
+    },
+  })
+}
+
+export const loginPasswordIncorrect = () => {
+  enqueueSnackbar("Contraseña incorrecta!", {
+    variant: "error",
+    anchorOrigin: {
+      vertical: "bottom",
+      horizontal: "right",
+    },
+  })
+}

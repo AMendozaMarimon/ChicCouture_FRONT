@@ -5,8 +5,7 @@ import VISIBLE from "./Icons/VISIBLE.png";
 import INVISIBLE from "./Icons/INVISIBLE.png";
 import GOOGLE from "./Icons/GOOGLE.svg";
 import styles from "./loginAndRegister.module.css";
-import { loginDenied, loginSuccess } from "../../assets/NotiStack";
-
+import { loginDenied, loginError, loginPasswordIncorrect, loginSuccess, loginUserNotFound } from "../../assets/NotiStack";
 
 export default function LoginAndRegister() {
   // Indica si es iniciar sesión o registrarse
@@ -45,7 +44,8 @@ export default function LoginAndRegister() {
     try {
       const endpoint = "http://localhost:3000/login";
       const { data, status } = await axios.post(endpoint, valueLogin);
-      // Si se inicia sesion correctamente 
+      console.log(data)
+      // Si se inicia sesion correctamente
       if (status === 200) {
         // Alerta de inicio de sesion
         loginSuccess();
@@ -55,8 +55,17 @@ export default function LoginAndRegister() {
       if (error.response) {
         const { status } = error.response;
         if (status === 404) {
-          // Alerta de credenciales incorrectas
-          loginDenied()
+          // Alerta de usuario no encontrado
+          loginUserNotFound();
+        } else if (status === 400) {
+          // Alerta de credenciales faltante
+          loginError();
+        } else if (status === 401) {
+          // Alerta de contraseña incorrectas
+          loginPasswordIncorrect();
+        } else if (status === 500) {
+          // Alerta de servidor no disponible
+          loginDenied();
         }
       }
     }
