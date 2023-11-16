@@ -1,11 +1,17 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import axios from "axios";
 import WOMAN from "./Img/WOMAN.webp";
 import VISIBLE from "./Icons/VISIBLE.png";
 import INVISIBLE from "./Icons/INVISIBLE.png";
 import GOOGLE from "./Icons/GOOGLE.svg";
 import styles from "./loginAndRegister.module.css";
-import { loginDenied, loginError, loginPasswordIncorrect, loginSuccess, loginUserNotFound } from "../../assets/NotiStack";
+import {
+  loginDenied,
+  loginError,
+  loginPasswordIncorrect,
+  loginSuccess,
+  loginUserNotFound,
+} from "../../assets/NotiStack";
 
 export default function LoginAndRegister() {
   // Indica si es iniciar sesión o registrarse
@@ -20,7 +26,31 @@ export default function LoginAndRegister() {
     password: "",
   });
 
-  const [valueRegister, setValueRegister] = useState("");
+  // Obtiene los valores de los inputs del Register
+  const [valueRegister, setValueRegister] = useState({
+    name: "",
+    lastName: "",
+    age: "",
+    country: "",
+    email: "",
+    password: "",
+    tel: "",
+  });
+
+  console.log(valueRegister);
+
+  // Guarda los paises en el estado
+  const [allCountrys, setAllCountrys] = useState([]);
+
+  // Obtiene todos los paises
+  useEffect(() => {
+    const getCountrys = async () => {
+      const endpoint = "https://restcountries.com/v3.1/all";
+      const { data } = await axios.get(endpoint);
+      setAllCountrys(data);
+    };
+    getCountrys();
+  }, []);
 
   // Cambia los valores de los inputs del Login
   const handleChangeValue = (e: ChangeEvent<HTMLInputElement>) => {
@@ -44,7 +74,7 @@ export default function LoginAndRegister() {
     try {
       const endpoint = "http://localhost:3000/login";
       const { data, status } = await axios.post(endpoint, valueLogin);
-      console.log(data)
+      console.log(data);
       // Si se inicia sesion correctamente
       if (status === 200) {
         // Alerta de inicio de sesion
@@ -69,6 +99,18 @@ export default function LoginAndRegister() {
         }
       }
     }
+  };
+
+  // Cambia los valores de los inputs del Register
+  const handleChangeValueRegister = (e: ChangeEvent<HTMLInputElement>) => {
+    // Obtiene el valor del input y el name
+    const { value, name } = e.target;
+    const uptadeValueRegister = {
+      ...valueRegister,
+      [name]: value,
+    };
+    // Actualiza el state del Register
+    setValueRegister(uptadeValueRegister);
   };
 
   return (
@@ -104,6 +146,7 @@ export default function LoginAndRegister() {
                   name="email"
                   value={valueLogin.email}
                   onChange={handleChangeValue}
+                  autoComplete="email"
                   required
                 />
                 <label>Contraseña</label>
@@ -113,6 +156,7 @@ export default function LoginAndRegister() {
                     name="password"
                     value={valueLogin.password}
                     onChange={handleChangeValue}
+                    autoComplete="current-password"
                     required
                   />
                   <button type="button" onClick={togglePasswordVisibility}>
@@ -148,9 +192,93 @@ export default function LoginAndRegister() {
               </div>
             </form>
           ) : (
-            <form className={styles.form}>
-              <div>
-                <h1>Hola</h1>
+            <form className={styles.form2}>
+              <div className={styles.form2_1}>
+                <div className={styles.formGroup2}>
+                  <div className={styles.labelAndInput2}>
+                    <input
+                      type="text"
+                      name="name"
+                      value={valueRegister.name}
+                      onChange={handleChangeValueRegister}
+                      placeholder="Nombre..."
+                      required
+                    />
+                  </div>
+                  <div className={styles.labelAndInput2}>
+                    <input
+                      type="text"
+                      name="lastName"
+                      value={valueRegister.lastName}
+                      onChange={handleChangeValueRegister}
+                      placeholder="Apellido..."
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className={styles.formGroup2}>
+                <div className={styles.labelAndInput2}>
+                  <input
+                    type="number"
+                    name="age"
+                    value={valueRegister.age}
+                    onChange={handleChangeValueRegister}
+                    min={18}
+                    max={99}
+                    placeholder="Edad..."
+                    required
+                  />
+                </div>
+                <div className={styles.labelAndInput2}>
+                  <input
+                    type="number"
+                    name="tel"
+                    value={valueRegister.tel}
+                    onChange={handleChangeValueRegister}
+                    placeholder="Telefóno..."
+                    required
+                  />
+                </div>
+                <div className={styles.labelAndInput2}>
+                  <select
+                    name="country"
+                    value={valueRegister.country}
+                    onChange={handleChangeValueRegister}
+                    placeholder="Pais..."
+                  >
+                    {allCountrys &&
+                      allCountrys.map((country: any) => (
+                        <option
+                          key={country.name.common}
+                          value={country.name.common}
+                        >
+                          {country.name.common}
+                        </option>
+                      ))}
+                  </select>
+                </div>
+              </div>
+              <div className={styles.formGroup2}>
+                <div className={styles.labelAndInput2}>
+                  <input
+                    type="email"
+                    name="email"
+                    value={valueRegister.email}
+                    onChange={handleChangeValueRegister}
+                    placeholder="Correo electrónico..."
+                    required
+                  />
+                </div>
+                <div className={styles.labelAndInput2}>
+                  <input
+                    type="password"
+                    name="password"
+                    value={valueRegister.password}
+                    placeholder="Contraseña..."
+                    onChange={handleChangeValueRegister}
+                  />
+                </div>
               </div>
             </form>
           )}

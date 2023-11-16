@@ -182,3 +182,36 @@
 .textPassword2:hover {
   color: var(--color-grey-input);
 }
+
+------------------------------ 
+.form2 {
+  display: flex;
+}
+
+.form2_1 {
+  display: flex;
+  margin-top: 2.2rem;
+}
+
+.formGroup2 {
+  display: flex;
+}
+
+.labelAndInput2 {
+  display: flex;
+  flex-direction: column;
+  margin: 0 4rem 0 0;
+  width: 100%;
+}
+
+.labelAndInput2 input, select {
+  font-family: var(--font-principal);
+  font-weight: bolder;
+  width: 100%;
+  margin: 1rem 0;
+  padding: 0.7rem;
+  border-radius: 7px;
+  border-color: var(--color-black);
+  outline: none;
+  border-color: var(--color-grey-input);
+}
