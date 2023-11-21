@@ -37,8 +37,6 @@ export default function LoginAndRegister() {
     tel: "",
   });
 
-  console.log(valueRegister);
-
   // Guarda los paises en el estado
   const [allCountrys, setAllCountrys] = useState([]);
 
