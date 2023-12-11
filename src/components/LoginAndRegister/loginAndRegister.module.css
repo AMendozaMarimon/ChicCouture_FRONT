@@ -188,9 +188,16 @@
   display: flex;
 }
 
+.form2 p {
+  font-family: var(--font-principal);
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin: 1.5rem 0;
+}
+
 .form2_1 {
   display: flex;
-  margin-top: 2.2rem;
+  margin-top: 1rem;
 }
 
 .formGroup2 {
@@ -208,10 +215,29 @@
   font-family: var(--font-principal);
   font-weight: bolder;
   width: 100%;
-  margin: 1rem 0;
+  margin: 0.5rem 0;
   padding: 0.7rem;
   border-radius: 7px;
   border-color: var(--color-black);
   outline: none;
   border-color: var(--color-grey-input);
+}
+
+.buttonLogin2 {
+  font-family: var(--font-principal);
+  color: white;
+  background-color: var(--color-black);
+  border-radius: 7px;
+  font-weight: bolder;
+  font-size: 15px;
+  padding: 0.5rem 0;
+  width: 43%;
+  margin-top: 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.buttonLogin2:hover {
+  color: var(--color-black);
+  background-color: var(--color-hover-btn);
 }

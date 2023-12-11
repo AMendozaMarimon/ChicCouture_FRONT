@@ -5,6 +5,7 @@ import buttonDelete from "./Icons/delete.svg";
 import styles from "./ShoopingBag.module.css";
 import { removeBagS } from "../../Redux/action";
 import { removeProdBagNoti } from "../../assets/NotiStack";
+import { MagicMotion } from "react-magic-motion";
 
 interface Product {
   id: string;
@@ -46,7 +47,7 @@ export default function ShoopingBag() {
         <h2>TU BOLSA DE COMPRAS</h2>
       </div>
       {ShopBag && ShopBag.length === 0 ? (
-        <div className={styles.alert0}> 
+        <div className={styles.alert0}>
           <p>Aún no tienes artículos en tu bolsa.</p>
           <p>
             <b>
@@ -59,82 +60,84 @@ export default function ShoopingBag() {
           </Link>
         </div>
       ) : (
-        <div className={styles.containerInfoAndPrice}>
-          <div className={styles.conLeft}>
-            {ShopBag &&
-              ShopBag.map((product: Product) => (
-                <div className={styles.products} key={product.id}>
-                  <div className={styles.prodSlideLeft}>
-                    <div className={styles.imgP}>
-                      <Link to={`/shooping/${product.id}`}>
+        <MagicMotion>
+          <div className={styles.containerInfoAndPrice}>
+            <div className={styles.conLeft}>
+              {ShopBag &&
+                ShopBag.map((product: Product) => (
+                  <div className={styles.products} key={product.id}>
+                    <div className={styles.prodSlideLeft}>
+                      <div className={styles.imgP}>
+                        <Link to={`/shooping/${product.id}`}>
+                          <img
+                            src={product.image[0]}
+                            alt={product.image[0]}
+                            draggable="false"
+                          />
+                        </Link>
+                      </div>
+                      <div className={styles.productInfo}>
+                        <p className={styles.brand}>{product.brand}</p>
+                        <p className={styles.name}>{product.name}</p>
+                        <p className={styles.idP}>ID del producto:</p>
+                        <p className={styles.id}>{product.id}</p>
+                      </div>
+                    </div>
+                    <div className={styles.productPrice}>
+                      <p>${formatPrice(product.price)}</p>
+                    </div>
+                    <div className={styles.deleteButtonCont}>
+                      <button
+                        className={styles.deleteButton}
+                        onClick={() => handleDeleteShopBag({ id: product.id })}
+                      >
                         <img
-                          src={product.image[0]}
-                          alt={product.image[0]}
+                          src={buttonDelete}
+                          alt={buttonDelete}
                           draggable="false"
                         />
-                      </Link>
-                    </div>
-                    <div className={styles.productInfo}>
-                      <p className={styles.brand}>{product.brand}</p>
-                      <p className={styles.name}>{product.name}</p>
-                      <p className={styles.idP}>ID del producto:</p>
-                      <p className={styles.id}>{product.id}</p>
+                      </button>
                     </div>
                   </div>
-                  <div className={styles.productPrice}>
-                    <p>${formatPrice(product.price)}</p>
-                  </div>
-                  <div className={styles.deleteButtonCont}>
-                    <button
-                      className={styles.deleteButton}
-                      onClick={() => handleDeleteShopBag({ id: product.id })}
-                    >
-                      <img
-                        src={buttonDelete}
-                        alt={buttonDelete}
-                        draggable="false"
-                      />
-                    </button>
-                  </div>
-                </div>
-              ))}
-          </div>
-          <div className={styles.conRigth}>
-            <div className={styles.contLeftT}>
-              <div className={styles.resumen}>
-                <p>Resumen</p>
-              </div>
-              <div className={styles.subtotal}>
-                <div>
-                  <p>Subtotal</p>
-                </div>
-                <div>${formatPrice(totalPrice())}</div>
-              </div>
-              <div className={styles.subtotal}>
-                <div>
-                  <p>Entrega</p>
-                </div>
-                <div>$0</div>
-              </div>
+                ))}
             </div>
-            <div className={styles.contRigthT}>
-              <div className={styles.total}>
-                <div className={styles.totalP}>
-                  <p>Total</p>
+            <div className={styles.conRigth}>
+              <div className={styles.contLeftT}>
+                <div className={styles.resumen}>
+                  <p>Resumen</p>
                 </div>
-                <div className={styles.priceT}>
-                  <p>
-                    COP <b>${formatPrice(totalPrice())}</b>   
-                  </p>
-                  <span>Impuestos aduaneros incluidos</span>
+                <div className={styles.subtotal}>
+                  <div>
+                    <p>Subtotal</p>
+                  </div>
+                  <div>${formatPrice(totalPrice())}</div>
+                </div>
+                <div className={styles.subtotal}>
+                  <div>
+                    <p>Entrega</p>
+                  </div>
+                  <div>$0</div>
                 </div>
               </div>
-            </div>
-            <div className={styles.buttonT}>
-              <button>Comprar ahora!</button>
+              <div className={styles.contRigthT}>
+                <div className={styles.total}>
+                  <div className={styles.totalP}>
+                    <p>Total</p>
+                  </div>
+                  <div className={styles.priceT}>
+                    <p>
+                      COP <b>${formatPrice(totalPrice())}</b>
+                    </p>
+                    <span>Impuestos aduaneros incluidos</span>
+                  </div>
+                </div>
+              </div>
+              <div className={styles.buttonT}>
+                <button>Comprar ahora!</button>
+              </div>
             </div>
           </div>
-        </div>
+        </MagicMotion>
       )}
     </div>
   );

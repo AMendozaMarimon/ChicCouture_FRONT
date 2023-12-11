@@ -13,7 +13,6 @@ interface FavsProps {
 }
 
 export default function Favorites() {
-
   const Favs = useSelector((state: productReducer) => state.favorites);
 
   // Contador de los favoritos
@@ -44,22 +43,22 @@ export default function Favorites() {
         </div>
       </div>
       <div className={styles.containerCF}>
-        <div className={styles.containerCF}>
-          {Favs && Favs.length > 0 ? (
-            Favs.map((fav: FavsProps) => (
-              <Card
-                key={fav.id}
-                id={fav.id}
-                name={fav.name}
-                image={fav.image}
-                price={fav.price}
-                brand={fav.brand}
-              />
-            ))
-          ) : (
-            <img src="" alt="" />
-          )}
-        </div>
+          <div className={styles.containerCF}>
+            {Favs && Favs.length > 0 ? (
+              Favs.map((fav: FavsProps) => (
+                <Card
+                  key={fav.id}
+                  id={fav.id}
+                  name={fav.name}
+                  image={fav.image}
+                  price={fav.price}
+                  brand={fav.brand}
+                />
+              ))
+            ) : (
+              <img src="" alt="" />
+            )}
+          </div>
       </div>
     </div>
   );

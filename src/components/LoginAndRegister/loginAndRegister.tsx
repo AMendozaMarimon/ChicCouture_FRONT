@@ -191,6 +191,7 @@ export default function LoginAndRegister() {
             </form>
           ) : (
             <form className={styles.form2}>
+              <p>Ingresa tus datos</p>
               <div className={styles.form2_1}>
                 <div className={styles.formGroup2}>
                   <div className={styles.labelAndInput2}>
@@ -278,6 +279,20 @@ export default function LoginAndRegister() {
                   />
                 </div>
               </div>
+              <button className={styles.buttonLogin2}>Registrarte</button>
+              <p className={styles.text}>O</p>
+              <button type="button" className={styles.buttonLoginGoogle}>
+                <>
+                  <img src={GOOGLE} alt="Google..." draggable="false" />
+                  <p>Google</p>
+                </>
+              </button>
+              <p
+                className={styles.textPassword2}
+                onClick={() => setIsSignIn(true)}
+              >
+                ¿Ya tienes cuenta en ChiCouture? INICIA SESIÓN!
+              </p>
             </form>
           )}
         </div>
