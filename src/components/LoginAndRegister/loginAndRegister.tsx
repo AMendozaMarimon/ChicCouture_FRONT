@@ -111,6 +111,23 @@ export default function LoginAndRegister() {
     setValueRegister(uptadeValueRegister);
   };
 
+  const handleSubmitRegister = async () => {
+    try {
+      const endpoint = "http://localhost:3000/register";
+      const { data, status } = await axios.post(endpoint, valueRegister);
+      console.log(data);
+
+    } catch (error: any) {
+      if (error.response) {
+        const { status } = error.response;
+        if (status === 500) {
+          // Alerta de servidor no disponible
+          loginDenied();
+        }
+      }
+    }
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.sideLeft}>
@@ -279,7 +296,7 @@ export default function LoginAndRegister() {
                   />
                 </div>
               </div>
-              <button className={styles.buttonLogin2}>Registrarte</button>
+              <button className={styles.buttonLogin2} onClick={handleSubmitRegister}>Registrarte</button>
               <p className={styles.text}>O</p>
               <button type="button" className={styles.buttonLoginGoogle}>
                 <>
