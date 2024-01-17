@@ -27,7 +27,7 @@
 }
 
 .form {
-  padding: 2rem 0;
+  padding: 1.1rem 0;
   width: 100%;
 }
 
@@ -102,8 +102,8 @@
 }
 
 .textPassword {
-  margin: 0.5rem 0 1.3rem 0;
-  width: 50%;
+  margin: 0.5rem 0 1.5rem 0;
+  width: 44%;
   font-family: var(--font-principal);
   font-size: 0.9rem;
   text-decoration: underline;
@@ -183,61 +183,52 @@
   color: var(--color-grey-input);
 }
 
------------------------------- 
-.form2 {
-  display: flex;
-}
+@media (max-width: 768px) {
+  .sideLeft {
+    display: none;
+  }
 
-.form2 p {
-  font-family: var(--font-principal);
-  font-size: 1.1rem;
-  font-weight: bold;
-  margin: 1.5rem 0;
-}
+  .sideRigth {
+    width: 100%;
+  }
 
-.form2_1 {
-  display: flex;
-  margin-top: 1rem;
-}
+  .container {
+    margin: 7.3rem 7vw;
+  }
 
-.formGroup2 {
-  display: flex;
-}
+  .content {
+    padding: 0;
+  }
 
-.labelAndInput2 {
-  display: flex;
-  flex-direction: column;
-  margin: 0 4rem 0 0;
-  width: 100%;
-}
+  .formGroup {
+    width: 100%;
+  }
 
-.labelAndInput2 input, select {
-  font-family: var(--font-principal);
-  font-weight: bolder;
-  width: 100%;
-  margin: 0.5rem 0;
-  padding: 0.7rem;
-  border-radius: 7px;
-  border-color: var(--color-black);
-  outline: none;
-  border-color: var(--color-grey-input);
-}
+  .formGroup input {
+    width: 90%;
+  }
 
-.buttonLogin2 {
-  font-family: var(--font-principal);
-  color: white;
-  background-color: var(--color-black);
-  border-radius: 7px;
-  font-weight: bolder;
-  font-size: 15px;
-  padding: 0.5rem 0;
-  width: 43%;
-  margin-top: 2rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
+  .passwordButton {
+    width: 100%;
+  }
 
-.buttonLogin2:hover {
-  color: var(--color-black);
-  background-color: var(--color-hover-btn);
+  .textPassword {
+    width: 100%;
+  }
+
+  .buttonLogin {
+    width: 100%;
+  }
+
+  .text {
+    width: 100%;
+  }
+
+  .buttonLoginGoogle {
+    width: 100%;
+  }
+
+  .textPassword2 {
+    width: 100%;
+  }
 }

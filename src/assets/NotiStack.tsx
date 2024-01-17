@@ -99,3 +99,33 @@ export const loginPasswordIncorrect = () => {
     },
   })
 }
+
+export const RegisterSuccess = () => {
+  enqueueSnackbar("Registro exitoso!", {
+    variant: "success",
+    anchorOrigin: {
+      vertical: "bottom",
+      horizontal: "right",
+    },
+  })
+}
+
+export const RegisterUserRegistered = () => {
+  enqueueSnackbar("El usuario ya existe!", {
+    variant: "error",
+    anchorOrigin: {
+      vertical: "bottom",
+      horizontal: "right",
+    },
+  })
+}
+
+export const RegisterError = () => {
+  enqueueSnackbar("Falta datos para registrarse!", {
+    variant: "error",
+    anchorOrigin: {
+      vertical: "bottom",
+      horizontal: "right",
+    },
+  })
+}

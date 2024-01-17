@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import axios from "axios";
 import WOMAN from "./Img/WOMAN.webp";
 import VISIBLE from "./Icons/VISIBLE.png";
@@ -11,6 +11,9 @@ import {
   loginPasswordIncorrect,
   loginSuccess,
   loginUserNotFound,
+  RegisterSuccess,
+  RegisterUserRegistered,
+  RegisterError,
 } from "../../assets/NotiStack";
 
 export default function LoginAndRegister() {
@@ -29,26 +32,9 @@ export default function LoginAndRegister() {
   // Obtiene los valores de los inputs del Register
   const [valueRegister, setValueRegister] = useState({
     name: "",
-    lastName: "",
-    age: "",
-    country: "",
     email: "",
     password: "",
-    tel: "",
   });
-
-  // Guarda los paises en el estado
-  const [allCountrys, setAllCountrys] = useState([]);
-
-  // Obtiene todos los paises
-  useEffect(() => {
-    const getCountrys = async () => {
-      const endpoint = "https://restcountries.com/v3.1/all";
-      const { data } = await axios.get(endpoint);
-      setAllCountrys(data);
-    };
-    getCountrys();
-  }, []);
 
   // Cambia los valores de los inputs del Login
   const handleChangeValue = (e: ChangeEvent<HTMLInputElement>) => {
@@ -71,29 +57,30 @@ export default function LoginAndRegister() {
   const handleSubmitLogin = async () => {
     try {
       const endpoint = "http://localhost:3000/login";
-      const { data, status } = await axios.post(endpoint, valueLogin);
-      console.log(data);
-      // Si se inicia sesion correctamente
+      const { status } = await axios.post(endpoint, valueLogin);
+
       if (status === 200) {
-        // Alerta de inicio de sesion
-        loginSuccess();
+        return loginSuccess();
       }
-    } catch (error: any) {
-      // Si no se inicia sesion
-      if (error.response) {
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error) && error.response) {
         const { status } = error.response;
-        if (status === 404) {
-          // Alerta de usuario no encontrado
-          loginUserNotFound();
-        } else if (status === 400) {
-          // Alerta de credenciales faltante
-          loginError();
-        } else if (status === 401) {
-          // Alerta de contraseña incorrectas
-          loginPasswordIncorrect();
-        } else if (status === 500) {
-          // Alerta de servidor no disponible
-          loginDenied();
+
+        switch (status) {
+          case 404:
+            loginUserNotFound();
+            break;
+          case 400:
+            loginError();
+            break;
+          case 401:
+            loginPasswordIncorrect();
+            break;
+          case 500:
+            loginDenied();
+            break;
+          default:
+            break;
         }
       }
     }
@@ -111,22 +98,33 @@ export default function LoginAndRegister() {
     setValueRegister(uptadeValueRegister);
   };
 
-  const handleSubmitRegister = async () => {
+  const handleSubmitRegister = async (e: ChangeEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
     try {
       const endpoint = "http://localhost:3000/register";
       const { data, status } = await axios.post(endpoint, valueRegister);
       console.log(data);
-
-    } catch (error: any) {
-      if (error.response) {
+      if (status === 201) {
+        return RegisterSuccess();
+      }
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error) && error.response) {
         const { status } = error.response;
-        if (status === 500) {
-          // Alerta de servidor no disponible
-          loginDenied();
+
+        switch (status) {
+          case 401:
+            RegisterError();
+            break;
+          case 400:
+            RegisterUserRegistered();
+            break;
+          default:
+            break;
         }
       }
     }
-  }
+  };
 
   return (
     <div className={styles.container}>
@@ -207,96 +205,46 @@ export default function LoginAndRegister() {
               </div>
             </form>
           ) : (
-            <form className={styles.form2}>
-              <p>Ingresa tus datos</p>
-              <div className={styles.form2_1}>
-                <div className={styles.formGroup2}>
-                  <div className={styles.labelAndInput2}>
-                    <input
-                      type="text"
-                      name="name"
-                      value={valueRegister.name}
-                      onChange={handleChangeValueRegister}
-                      placeholder="Nombre..."
-                      required
-                    />
-                  </div>
-                  <div className={styles.labelAndInput2}>
-                    <input
-                      type="text"
-                      name="lastName"
-                      value={valueRegister.lastName}
-                      onChange={handleChangeValueRegister}
-                      placeholder="Apellido..."
-                      required
-                    />
-                  </div>
-                </div>
+            <form className={styles.form}>
+              <div className={styles.formGroup}>
+                <label>Nombre</label>
+                <input
+                  type="text"
+                  name="name"
+                  value={valueRegister.name}
+                  onChange={handleChangeValueRegister}
+                  autoComplete="name"
+                  required
+                />
+                <label>Dirección de correo electrónico</label>
+                <input
+                  type="email"
+                  name="email"
+                  value={valueRegister.email}
+                  onChange={handleChangeValueRegister}
+                  autoComplete="email"
+                  required
+                />
+                <label>Contraseña</label>
+                <input
+                  type="password"
+                  name="password"
+                  value={valueRegister.password}
+                  onChange={handleChangeValueRegister}
+                  autoComplete="current-password"
+                  required
+                />
               </div>
-              <div className={styles.formGroup2}>
-                <div className={styles.labelAndInput2}>
-                  <input
-                    type="number"
-                    name="age"
-                    value={valueRegister.age}
-                    onChange={handleChangeValueRegister}
-                    min={18}
-                    max={99}
-                    placeholder="Edad..."
-                    required
-                  />
-                </div>
-                <div className={styles.labelAndInput2}>
-                  <input
-                    type="number"
-                    name="tel"
-                    value={valueRegister.tel}
-                    onChange={handleChangeValueRegister}
-                    placeholder="Telefóno..."
-                    required
-                  />
-                </div>
-                <div className={styles.labelAndInput2}>
-                  <select
-                    name="country"
-                    value={valueRegister.country}
-                    onChange={handleChangeValueRegister}
-                    placeholder="Pais..."
-                  >
-                    {allCountrys &&
-                      allCountrys.map((country: any) => (
-                        <option
-                          key={country.name.common}
-                          value={country.name.common}
-                        >
-                          {country.name.common}
-                        </option>
-                      ))}
-                  </select>
-                </div>
-              </div>
-              <div className={styles.formGroup2}>
-                <div className={styles.labelAndInput2}>
-                  <input
-                    type="email"
-                    name="email"
-                    value={valueRegister.email}
-                    onChange={handleChangeValueRegister}
-                    placeholder="Correo electrónico..."
-                    required
-                  />
-                </div>
-                <div className={styles.labelAndInput2}>
-                  <input
-                    type="password"
-                    name="password"
-                    value={valueRegister.password}
-                    placeholder="Contraseña..."
-                    onChange={handleChangeValueRegister}
-                  />
-                </div>
-              </div>
-              <button className={styles.buttonLogin2} onClick={handleSubmitRegister}>Registrarte</button>
+              <p className={styles.textPassword}>
+                Al registrate estás aceptando nuestras condiciones de uso y
+                privacidad.
+              </p>
+              <button
+                className={styles.buttonLogin}
+                onClick={handleSubmitRegister}
+              >
+                Registrarte
+              </button>
               <p className={styles.text}>O</p>
               <button type="button" className={styles.buttonLoginGoogle}>
                 <>
