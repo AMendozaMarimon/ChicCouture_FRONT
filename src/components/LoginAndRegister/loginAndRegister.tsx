@@ -57,27 +57,27 @@ export default function LoginAndRegister() {
   const handleSubmitLogin = async () => {
     try {
       const endpoint = "http://localhost:3000/login";
-      const { status } = await axios.post(endpoint, valueLogin);
+      const { data, status } = await axios.post(endpoint, valueLogin);
 
       if (status === 200) {
-        return loginSuccess();
+        return loginSuccess(data.user.name);
       }
-    } catch (error: unknown) {
+    } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
         const { status } = error.response;
 
         switch (status) {
           case 404:
-            loginUserNotFound();
+            await loginUserNotFound();
             break;
           case 400:
-            loginError();
+            await loginError();
             break;
           case 401:
-            loginPasswordIncorrect();
+            await loginPasswordIncorrect();
             break;
           case 500:
-            loginDenied();
+            await loginDenied();
             break;
           default:
             break;
@@ -104,9 +104,8 @@ export default function LoginAndRegister() {
     try {
       const endpoint = "http://localhost:3000/register";
       const { data, status } = await axios.post(endpoint, valueRegister);
-      console.log(data);
       if (status === 201) {
-        return RegisterSuccess();
+        return RegisterSuccess(data);
       }
     } catch (error: unknown) {
       if (axios.isAxiosError(error) && error.response) {
@@ -114,10 +113,10 @@ export default function LoginAndRegister() {
 
         switch (status) {
           case 401:
-            RegisterError();
+            await RegisterError();
             break;
           case 400:
-            RegisterUserRegistered();
+            await RegisterUserRegistered();
             break;
           default:
             break;

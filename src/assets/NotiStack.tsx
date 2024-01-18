@@ -50,8 +50,8 @@ export const removeProdBagNoti = () => {
   });
 };
 
-export const loginSuccess= () => {
-  enqueueSnackbar("Bienvenido!", {
+export const loginSuccess= (name: string) => {
+  enqueueSnackbar(`Bienvenido ${name}!`, {
     variant: "success",
     anchorOrigin: {
       vertical: "bottom",
@@ -100,8 +100,8 @@ export const loginPasswordIncorrect = () => {
   })
 }
 
-export const RegisterSuccess = () => {
-  enqueueSnackbar("Registro exitoso!", {
+export const RegisterSuccess = (name: string) => {
+  enqueueSnackbar(`¡Bienvenido ${name}!`, {
     variant: "success",
     anchorOrigin: {
       vertical: "bottom",

@@ -10,7 +10,7 @@
 }
 
 .containerCard {
-  width: 16vw;
+  width: 100%;
   height: auto;
   flex-wrap: wrap;
   justify-content: center;
@@ -79,7 +79,7 @@
 @media (max-width: 768px) {
 
   .containerP {
-    width: 95%;
+    width: 100%;
     margin: 5vw 0;
   }
 

@@ -1,9 +1,13 @@
-.containerP {
-  width: 100%;
+.containerProd {
+  display: grid;
+  grid-template-columns: auto; /* Cambiado a 'auto' */
+  justify-content: center; /* Centra los elementos en el eje horizontal */
+  column-gap: 3rem;
+  row-gap: 1rem;
 }
 
-.containerProd {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around; 
+@media screen and (min-width: 768px) {
+  .containerProd {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }

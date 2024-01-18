@@ -51,9 +51,17 @@
 }
 
 .containerCF {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: auto;
+  justify-content: center;
+  column-gap: 3rem;
+  row-gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .containerCF {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 768px) {

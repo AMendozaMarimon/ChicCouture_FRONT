@@ -24,8 +24,7 @@ export default function Cards() {
   }, [dispatch]);
 
   return (
-    <div className={styles.containerP}>
-      <div className={styles.containerProd}>
+    <div className={styles.containerProd}>
         {products && products.map((product: Product) => (
           <Card
             key={product.id}
@@ -36,7 +35,6 @@ export default function Cards() {
             brand={product.brandName}
           />
         ))}
-      </div>
     </div>
   );
 }

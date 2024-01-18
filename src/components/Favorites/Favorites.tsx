@@ -43,7 +43,6 @@ export default function Favorites() {
         </div>
       </div>
       <div className={styles.containerCF}>
-          <div className={styles.containerCF}>
             {Favs && Favs.length > 0 ? (
               Favs.map((fav: FavsProps) => (
                 <Card
@@ -58,7 +57,6 @@ export default function Favorites() {
             ) : (
               <img src="" alt="" />
             )}
-          </div>
       </div>
     </div>
   );
